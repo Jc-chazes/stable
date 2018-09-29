@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mis Deudas</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="selectedList">
+            <ion-segment-button value="memberships">
+                Membresías
+            </ion-segment-button>
+            <ion-segment-button value="lessons">
+                Clases Sueltas
+            </ion-segment-button>
+            <ion-segment-button value="products">
+                Productos
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div [ngSwitch]="selectedList">
+        <ion-list *ngSwitchCase="'memberships'">
+            <ion-grid *ngIf="thereAreMembershipsDebts">
+                <ion-row class="div-item" *ngFor="let membership of membershipsDebts">
+                    <ion-col col-5>
+                        <div class="debt-name">
+                            <p>{{membership.lessonName}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-4>
+                        <div class="debt-date">
+                            <p>{{membership.insDate}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="debt-amount">
+                            <p>{{currency}} {{membership.amount}}</p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid *ngIf="!thereAreMembershipsDebts">
+                <div class="box-message">
+                    <div>
+                        <img src="assets/images/happy-face.png" alt="">
+                        <p>No tienes ninguna deuda aquí,</p>
+                        <p>!Qué bueno!</p>
+                    </div>
+                </div>
+            </ion-grid>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'lessons'">
+            <ion-grid *ngIf="thereAreLessonsDebts">
+                <ion-row class="div-item" *ngFor="let lesson of lessonsDebts">
+                    <ion-col col-5>
+                        <div class="debt-name">
+                            <p>{{lesson.lessonName}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-4>
+                        <div class="debt-date">
+                            <p>{{lesson.insDate}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="debt-amount">
+                            <p>{{currency}} {{lesson.amount}}</p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid *ngIf="!thereAreLessonsDebts">
+                <div class="box-message">
+                    <div>
+                        <img src="assets/images/happy-face.png" alt="">
+                        <p>No tienes ninguna deuda aquí,</p>
+                        <p>!Qué bueno!</p>
+                    </div>
+                </div>
+            </ion-grid>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'products'">
+            <ion-grid *ngIf="thereAreProductsDebts">
+                <ion-row class="div-item" *ngFor="let product of productsDebts">
+                    <ion-col col-5>
+                        <div class="debt-name">
+                            <p>{{product.productName}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-4>
+                        <div class="debt-date">
+                            <p>{{product.insDate}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="debt-amount">
+                            <p>{{currency}} {{product.amount}}</p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid *ngIf="!thereAreProductsDebts">
+                <div class="box-message">
+                    <div>
+                        <img src="assets/images/happy-face.png" alt="">
+                        <p>No tienes ninguna deuda aquí,</p>
+                        <p>!Qué bueno!</p>
+                    </div>
+                </div>
+            </ion-grid>
+        </ion-list>
+    </div>
+</ion-content>

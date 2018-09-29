@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "85813565935",
+    "firebase_url": "https://firefitcodev.firebaseio.com",
+    "project_id": "firefitcodev",
+    "storage_bucket": "firefitcodev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85813565935:android:4410ccaa33e35dc9",
+        "android_client_info": {
+          "package_name": "com.ionicframework.fitcoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85813565935-s53e3qq0rnme0qimd21s4kjd2r5bqit3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdlC_q-YayohZ3ai_DlKD2OTVLXXktB4s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85813565935:android:00b00a5696a9c763",
+        "android_client_info": {
+          "package_name": "com.ionicframework.fitcoapp644044"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85813565935-s53e3qq0rnme0qimd21s4kjd2r5bqit3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdlC_q-YayohZ3ai_DlKD2OTVLXXktB4s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

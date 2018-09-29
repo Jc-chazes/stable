@@ -1,0 +1,83 @@
+page-notifications {
+
+  .grid{
+    padding: 0;
+  }
+
+  .each-row{
+    border-bottom: 1px solid #bbb;
+    padding: 8px 5px;
+
+    .circle{
+      width: 40px;
+      height: 40px;
+      background-color: $main-color;
+      border-radius: 50%;
+      text-align: center;
+      color: white;
+      padding-top: 5px;
+
+      p{
+        font-family: OpenSans-Regular;
+        font-size: 20px;
+      }
+    }
+
+    .div-text{
+      .p-title{
+        font-size: 13px;
+        font-family: OpenSans-Regular;
+      }
+
+      .p-text{
+        margin-top: 5px;
+        font-size: 13px;
+        font-family: OpenSans-Regular;
+        color: #818181;
+
+      }
+
+      .fontsize-10{
+        margin-top: 5px;
+        font-size: 12px;
+        font-family: OpenSans-Regular;
+        color: #818181
+      }
+    }
+
+    p{
+      margin: 0;
+    }
+
+    .date{
+      float: right;
+
+      p{
+        font-size: 10px;
+        font-family: OpenSans-Regular;
+      }
+    }
+  }
+
+  .box-message{
+    background-color: #f4f4f4;
+    color: #a5a4a2;
+    text-align: center;
+    padding-top: 1em;
+    height: 90vh;
+
+    div{
+      width: 100%;
+    }
+  }
+
+  .new-message{
+    font-weight: bold;
+  }
+
+  .new-message .p-text{
+    color: #141414 !important;
+  }
+
+}
+

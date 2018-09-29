@@ -1,0 +1,76 @@
+page-onboarding{
+
+  .bg-onboarding{
+
+    background-color: $main-color;
+
+    .swiper-container{
+      height: 75%;
+      padding-top: 20%;
+    }
+
+    .swiper-pagination-bullet-active{
+      background: white;
+    }
+
+    .box-slide{
+
+      .bg-lines{
+        width: 110px;
+        display: inline-block;
+
+        img{
+          width: 80%;
+        }
+      }
+
+      .box-text{
+        width: 80%;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: OpenSans-Regular;
+
+        p{
+          margin: 0;
+        }
+
+        .text-blue{
+          color: #192242;
+          font-size: 10px;
+          font-family: OpenSans-Bold;
+        }
+
+        .text-green{
+          color: white;
+          font-size: 17px;
+        }
+
+        .box-explain{
+          color: white;
+          text-align: center;
+          font-size: 15px;
+          margin-top: 12px;
+        }
+      }
+    }
+
+    .bottom-button{
+      position: absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      text-align: center;
+      margin: 40px 0;
+
+      button{
+        width: 70%;
+        border-radius: 25px;
+        background-color: white;
+        color: #1d4156;
+        padding: 10px 0;
+      }
+    }
+
+  }
+}

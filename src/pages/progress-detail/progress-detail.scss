@@ -1,0 +1,45 @@
+page-progress-detail {
+  .grid {
+    padding: 0;
+  }
+  .progress-card {
+    width: 85%;
+    padding: 5%;
+    margin: 10px auto;
+    box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.08);
+    color: #818181;
+    p {
+      margin: 5px 0 0 0;
+    }
+    .box-date {
+      margin: 10px 0;
+      font-size: 15px;
+      font-family: OpenSans-Bold;
+    }
+    .box-detail {
+      font-family: OpenSans-Regular;
+      font-size: 13px;
+      display: inline-block;
+    }
+  }
+  .btn-delete {
+    width: 100%;
+    margin: 25px 0;
+    text-align: center;
+    button {
+      background-color: transparent;
+      color: #e93a3a;
+      padding: 8px 5px;
+      ;
+      font-family: OpenSans-Bold;
+      font-size: 10px;
+      img {
+        width: 15px;
+        vertical-align: sub;
+      }
+    }
+  }
+  ion-img {
+    background: transparent;
+  }
+}

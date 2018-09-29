@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="report">
+    <div class="progress-card">
+
+      <ion-row justify-content-center *ngIf="report.photo != null">
+        <ion-img width="350" height="350" src="{{report.photo}}" justify-self-center></ion-img>
+      </ion-row>
+
+      <div class="box-date">
+        <p>FECHA: {{report.date}}</p>
+      </div>
+      <div class="box-detail">
+        <p *ngFor="let measurement of report.data">
+          <span>{{measurement.label}}: </span>{{measurement.value}} {{measurement.unit}}</p>
+      </div>
+
+    </div>
+
+    <ion-row *ngIf="report.insUser == authService.userId">
+      <div class="btn-delete">
+        <button (tap)="deleteRecord(report)">
+          <img src="assets/images/trash.png" alt="">
+          <span>ELIMINAR REGISTRO</span>
+        </button>
+      </div>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

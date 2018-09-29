@@ -1,0 +1,30 @@
+<ion-content>
+    <ion-grid *ngIf="thereAreAttendances">
+        <ion-row *ngFor="let attendance of attendances"  class="div-item">
+            <ion-col>
+                <div>
+                    <p>{{attendance.dateLesson}}</p>
+                    <p>{{attendance.startTime}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div>
+                    <p>{{attendance.disciplineName}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div>
+                    <p *ngIf="attendance.status == 1">Asistió</p>
+                    <p *ngIf="attendance.status == 0">No asistió</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereAreAttendances">
+        <ion-row class="box-message">
+            <div>
+                <p>No tienes asistencias registradas</p>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

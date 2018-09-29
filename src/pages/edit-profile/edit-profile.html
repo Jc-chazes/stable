@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Editar Perfil</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="sec-editprofile">
+    <ion-grid *ngIf="user">
+        <form (submit)="saveDataUser()">
+            <div class=options-btns>
+                <button class="save" type="submit">
+                    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                    <span>Guardar</span>
+                </button>
+            </div>
+            <div class="sec-picture">
+                <div class="circ-img">
+                    <img name="photo" src={{userPhoto}}>
+                </div>
+            </div>
+            <div class="sec-info">
+                <div class="fullname">
+                    <div class="div-icon">
+                        <ion-icon ios="ios-person" md="md-person"></ion-icon>
+                    </div>
+                    <div class="div-input">
+                        <input type="text" name="name" placeholder="Nombre" [(ngModel)]="user.name">
+                        <input type="text" name="lastname" placeholder="Apellido" [(ngModel)]="user.lastName">
+                    </div>
+                </div>
+                <div class="each-box">
+                    <div class="div-icon">
+                        <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+                    </div>
+                    <div class="div-input">
+                        <input type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+                    </div>
+                </div>
+                <div class="each-box">
+                    <div class="div-icon">
+                        <ion-icon ios="ios-call" md="md-call"></ion-icon>
+                    </div>
+                    <div class="div-input">
+                        <input type="text" name="cellphone" placeholder="Celular" [(ngModel)]="user.celPhone">
+                    </div>
+                </div>
+                <div class="each-box">
+                    <div class="div-icon">
+                        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+                    </div>
+                    <ion-item>
+                        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="user.birthDate" name="born" placeholder="Fecha de nacimiento"></ion-datetime>
+                    </ion-item>
+                </div>
+                <div class="each-box">
+                    <div class="div-icon">
+                        <ion-icon ios="ios-transgender" md="md-transgender"></ion-icon>
+                    </div>
+                    <div class="div-input">
+                        <select class="form-control select-gender" name="gender" [(ngModel)]="user.gender">
+                            <option value="">Selecciona</option>
+                            <option *ngFor="let gend of gender"
+                                    [ngValue]="gend.value">{{gend.label}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-grid>
+</ion-content>

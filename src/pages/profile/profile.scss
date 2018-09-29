@@ -1,0 +1,90 @@
+page-profile{
+
+  .grid{
+    padding: 0;
+  }
+
+  .sec-profile{
+
+    .options-edit{
+      text-align: right;
+
+      button{
+        border: 1px solid #bbb;
+        color: #bbb;
+        border-radius: 40px;
+        background-color: white;
+        padding: 10px;
+      }
+    }
+
+    .sec-picture{
+      text-align: center;
+      border-bottom: 0.5px solid #f0f0f0;
+
+      .circ-img{
+        width: 70px;
+        height: 70px;
+        display: inline-block;
+        position: relative;
+
+        img{
+          border-radius: 50%;
+          width: 100%;
+          height: 100%;
+        }
+
+        .bg-camera{
+          width: 30px;
+          height: 30px;
+          display: inline-block;
+          position: absolute;
+          bottom: -8px;
+          right: -5px;
+
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      h5{
+        color: #37D3CF;
+        font-family: OpenSans-Regular;
+        font-size: 15px;
+      }
+
+
+    }
+
+    .div-detail{
+      padding: 2%;
+      border-bottom: 1px solid #f0f0f0;
+      font-family: OpenSans-Regular;
+      color: #606060;
+
+      .i-profile{
+        color: #00b8b8;
+        float: right;
+        margin-top: 5px;
+      }
+
+      .text-data{
+        p{
+          margin: 0;
+          margin-top: 5px;
+        }
+      }
+
+      .data-final{
+        margin-bottom: 2em;
+      }
+    }
+
+    .sec-options{
+      border-top: 0.5px solid #bbb;
+    }
+
+  }
+}

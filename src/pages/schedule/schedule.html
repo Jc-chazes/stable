@@ -1,0 +1,254 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start *ngIf="segment == 'lessons'">
+      <button ion-button (tap)="showFilter()">
+        <ion-icon ios="ios-funnel" md="ios-funnel"></ion-icon>
+      </button>
+      <small class="filter-text">Filtros</small>
+    </ion-buttons>
+    <ion-title>Agendar</ion-title>
+    <ion-buttons end>
+      <button ion-button (tap)="goToReserves()">
+        <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon>
+      </button>
+      <small class="filter-text filter-text">Reservas</small>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar *ngIf="statusBooking == 'Y'">
+    <ion-segment [(ngModel)]="segment" (ionChange)="onSegmentChange()">
+      <ion-segment-button value="lessons">
+        Clases
+      </ion-segment-button>
+      <ion-segment-button value="services">
+        Servicios
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'filter-blur': divFilter}" [ngSwitch]="segment">
+  <ion-grid *ngSwitchCase="'lessons'">
+    <ion-row class="box-week">
+      <ion-col col-12>
+        <ion-row>
+          <ion-col col-6>
+            <div class="text-maincolor">
+              <p>{{monthName}}</p>
+            </div>
+          </ion-col>
+          <ion-col col-6>
+            <div class="text-maincolor opt-reset" (tap)="resetWeek()">
+              <p>HOY</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="text-center">
+          <ion-col col-1>
+            <div class="chevron" (tap)="renderPrevWeek()">
+              <img src="assets/images/left-chevron.png">
+            </div>
+          </ion-col>
+          <ion-col col-10>
+            <div (tap)="selectedDay(day.date)" class="box-day" *ngFor="let day of week;  let i = index" [ngClass]="{'bg-day': i == 3, 'day-notvalid': day.date < today, 'today': day.number == numday && day.monthNumber == nummonth}">
+              <p>
+                <strong>{{day.letter}}</strong>
+              </p>
+              <p>{{day.number}}</p>
+            </div>
+          </ion-col>
+          <ion-col col-1>
+            <div class="chevron" (tap)="renderNextWeek()">
+              <img src="assets/images/right-chevron.png">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="box-lessons" *ngIf="thereAreLessons">
+      <ion-col col-12>
+        <div class="sec-title">
+          <ion-icon ios="ios-sunny" md="md-sunny"></ion-icon>
+          <span>Clases</span>
+        </div>
+        <ion-row class="each-lesson" *ngFor="let lesson of lessons">
+          <ion-col col-3>
+            <div class="box-div div-hour">
+              <p>{{lesson.start}}</p>
+              <p>{{lesson.end}}</p>
+            </div>
+          </ion-col>
+          <ion-col col-6>
+            <div class="box-div" (tap)="viewDetail(lesson)">
+              <p>
+                <strong>{{lesson.disciplineName}}</strong>
+              </p>
+              <p>{{lesson.instructorName}}</p>
+            </div>
+          </ion-col>
+          <ion-col col-3>
+            <div class="box-button">
+              <button (tap)="showSimpleRerserveAlert(lesson)" *ngIf="lesson.reserves < lesson.occupancy || !statusWaitingList">RESERVAR</button>
+              <button (tap)="showSimpleRerserveAlert(lesson, true)" class="btn-second-action" *ngIf='lesson.reserves >= lesson.occupancy && statusWaitingList'
+                [disabled]="lesson.showEsperar"> {{lesson.showEsperar ? 'ESPERANDO' : 'ESPERAR'}} </button>
+              <p>{{lesson.reserves}} / {{lesson.occupancy}}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="box-message" *ngIf="!thereAreLessons">
+      <div>
+        <p>No hay clases disponibles</p>
+      </div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngSwitchCase="'services'" class="grid-services">
+    <div *ngIf="!selectedSearch">
+      <ion-list no-lines>
+        <ion-list-header>
+          Selecciona tu servicio
+        </ion-list-header>
+        <button ion-item *ngFor="let item of listServices" class="each-service" (click)="serviceSelected(item)">
+          {{ item.name }}
+        </button>
+      </ion-list>
+    </div>
+    <div *ngIf="selectedSearch">
+      <ion-row class="box-selected-service">
+        <ion-col col-11>
+          <div>
+            <strong>Servicio:</strong> {{service.name}}</div>
+        </ion-col>
+        <ion-col col-1>
+          <div class="service-clear" (click)="resetServiceSearch()">
+            <img src="assets/images/cross.png">
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="box-week">
+        <ion-col col-12>
+          <ion-row>
+            <ion-col col-6>
+              <div class="text-maincolor">
+                <p>{{monthName}}</p>
+              </div>
+            </ion-col>
+            <ion-col col-6>
+              <div class="text-maincolor opt-reset" (tap)="resetWeek()">
+                <p>HOY</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="text-center">
+            <ion-col col-1>
+              <div class="chevron" (tap)="renderPrevWeek()">
+                <img src="assets/images/left-chevron.png">
+              </div>
+            </ion-col>
+            <ion-col col-10>
+              <div (tap)="selectedDay(day.date)" class="box-day" *ngFor="let day of week;  let i = index" [ngClass]="{'bg-day': i == 3, 'day-notvalid': day.date < today, 'today': day.number == numday && day.monthNumber == nummonth}">
+                <p>
+                  <strong>{{day.letter}}</strong>
+                </p>
+                <p>{{day.number}}</p>
+              </div>
+            </ion-col>
+            <ion-col col-1>
+              <div class="chevron" (tap)="renderNextWeek()">
+                <img src="assets/images/right-chevron.png">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="box-lessons" *ngIf="availableSchedule.length > 0">
+        <ion-col col-12>
+          <div class="sec-title">
+            <ion-icon ios="ios-sunny" md="md-sunny"></ion-icon>
+            <span>Servicios</span>
+          </div>
+          <ion-row class="each-lesson" *ngFor="let appointment of availableSchedule">
+            <ion-col col-3>
+              <div class="box-div div-hour">
+                <p>{{appointment.start}}</p>
+                <p>{{appointment.end}}</p>
+              </div>
+            </ion-col>
+            <ion-col col-6>
+              <div class="box-div" (tap)="viewDetailService(appointment)">
+                <p>
+                  <strong>{{appointment.disciplineName}}</strong>
+                </p>
+                <p>{{appointment.instructorName}}</p>
+              </div>
+            </ion-col>
+            <ion-col col-3>
+              <div class="box-button">
+                <button (tap)="showReserveServiceAlert(appointment)">RESERVAR</button>
+                <p>{{appointment.reserves}} / {{appointment.occupancy}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="box-message" *ngIf="availableSchedule.length == 0">
+        <div>
+          <p>No hay horario disponible para esta fecha</p>
+        </div>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>
+<div *ngIf="divFilter" class="bg-filter">
+  <div class="container-filter">
+    <div class="div-title">
+      <h1>Filtrar por categoría</h1>
+      <div class="icon-cross">
+        <img src="assets/images/cross.png" alt="" (click)="closeFilter()">
+      </div>
+    </div>
+    <div class="each-select" *ngIf="shareBD">
+      <div>
+        <p>CENTROS</p>
+        <select name="establishment" id="establishment" [(ngModel)]="establishmentIdSelected" (change)="selectEstablishment()">
+          <option *ngFor="let establishment of selectEstablishments" [ngValue]="establishment.id">{{establishment.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="each-select">
+      <div>
+        <p>DISCIPLINA</p>
+        <select name="lesson" id="lesson" [(ngModel)]="disciplineIdSelected" (change)="selectDiscipline()">
+          <option value="">Todas las disciplinas</option>
+          <option *ngFor="let discipline of selectDisciplines" [ngValue]="discipline.id">{{discipline.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="each-select">
+      <div>
+        <p>INSTRUCTOR</p>
+        <select name="instructor" id="instructor" [(ngModel)]="instructorIdSelected">
+          <option value="">Todos los instructores</option>
+          <option *ngFor="let instructor of selectInstructors" [ngValue]="instructor.id">{{instructor.name}} {{instructor.lastName}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="each-select">
+      <div>
+        <p>SALÓN</p>
+        <select name="room" id="room" [(ngModel)]="roomIdSelected">
+          <option value="">Todas las salas</option>
+          <option *ngFor="let room of selectRooms" [ngValue]="room.id">{{room.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="div-buttons">
+      <button class="clean-btn" (tap)="clearFilter()">Limpiar filtros</button>
+      <button class="aply-btn" (tap)="aplyFilter()">Ver resultados</button>
+    </div>
+  </div>
+</div>

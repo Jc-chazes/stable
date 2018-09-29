@@ -1,0 +1,84 @@
+page-form-card-data{
+
+  .name-plan{
+    font-family: OpenSans-Bold;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #192242;
+
+    p{
+      text-align: center;
+    }
+  }
+
+  .text-subtitle{
+    padding: 1% 7% 0;
+    font-family: OpenSans-Bold;
+    font-size: 10px;
+    color: #818181;
+    margin: 0;
+  }
+
+  .dos-inputs{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: OpenSans-Regular;
+    font-size: 13px;
+    text-align: center;
+
+    .inpu{
+      display: inline-block;
+      width: 48%;
+      padding: 3% 1%;
+      box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.08);
+
+      input{
+        border: none;
+        width: 96%;
+        padding: 5px 0;
+        border-bottom: 1px solid $main-color;
+      }
+
+    }
+  }
+
+  .un-input{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: OpenSans-Regular;
+    font-size: 13px;
+    text-align: center;
+
+    .div-input{
+      display: inline-block;
+      width: 98%;
+      padding: 3% 1%;
+      box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.08);
+
+      input{
+        border: none;
+        width: 100%;
+        padding: 5px 0;
+        border-bottom: 1px solid $main-color;
+      }
+    }
+  }
+
+  .div-boton{
+    margin-top: 40px;
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+    button{
+      width: 100%;
+      background-color: $main-color;
+      color: white;
+      border-radius: 50px;
+      padding: 10px;
+    }
+  }
+
+}

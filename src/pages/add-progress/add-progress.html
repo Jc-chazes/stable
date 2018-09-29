@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Nuevo Registro</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <div class="section-title">
+            <p>Registra tu progreso</p>
+        </div>
+        <ion-row>
+            <div class=options-btns>
+                <button class="save" type="submit" (tap)="saveValues()">
+                    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                    <span>Guardar</span>
+                </button>
+            </div>
+        </ion-row>
+        <ion-row justify-content-center *ngIf="statusUploadPhoto">
+            <div class="circ-img">
+                <div class="bg-camera" (tap)="addPhotoProgress()">
+                    <ion-icon ios="ios-photos" md="md-photos" class="icon-photo"></ion-icon>
+                    <br>
+                    <span *ngIf="!imgData">Seleccionar foto</span>
+                    <span *ngIf="imgData">¡Foto cargada!</span>
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <ion-item class="box-date">
+                <ion-label>Fecha</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="progressDate"></ion-datetime>
+            </ion-item>
+        </ion-row>
+        <ion-row *ngFor="let measurement of listMeasurements; let i = index" class="each-measurement">
+            <ion-col col-4>
+                <div>
+                    <p>{{measurement.label}}</p>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <div>
+                    <ion-input type="number" placeholder="0" name="custom{{i}}"
+                               [(ngModel)]="customValues[i]"></ion-input>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <div>
+                    <p>{{measurement.unit}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-content>
+    <ion-grid *ngIf="thereAreFreezes">
+        <ion-row *ngFor="let freeze of freezes" class="div-item">
+            <ion-col>
+                <div class="div-startDate">
+                    <p>{{freeze.dateStart}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div class="div-endDate">
+                    <p>{{freeze.dateEnd}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div class="div-comment">
+                    <p>{{freeze.description}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereAreFreezes">
+        <ion-row class="box-message">
+            <div>
+                <p>No tienes freezes registrados</p>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

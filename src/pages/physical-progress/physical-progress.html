@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mi Progreso</ion-title>
+        <ion-buttons end *ngIf="statusRegister == 'Y'">
+            <button ion-button (tap)="addProgress()" class="btn-add">
+                <img src="assets/images/plus.png" alt="">
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="thereAreProgress">
+        <ion-row *ngIf="listMeasurements">
+            <div class="div-select">
+                <select name="measurement" id="measurement" [(ngModel)]="measurementSelected" (change)="renderGraphic()">
+                    <option *ngFor="let measurement of listMeasurements"
+                            [ngValue]="measurement.labelId">{{measurement.label}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="chartOk" class="div-graphic">
+                <canvas baseChart
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [chartType]="lineChartType"></canvas>
+            </div>
+        </ion-row>
+        <ion-row class="box-records">
+            <ion-col>
+                <ion-row class="each-record" *ngFor="let record of arrRecords; let i = index">
+                    <ion-col col-4>
+                        <div class="record-date">
+                            <p>{{arrRecords[arrRecords.length - (i) - 1].date}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-4>
+                        <div class="record-name">
+                            <p>Registro {{arrRecords.length - (i)}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-4>
+                        <div class="div-btn">
+                            <button (tap)="viewRecordDetail(arrRecords[ arrRecords.length - (i) - 1])">Ver más</button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereAreProgress">
+        <ion-row class="box-message">
+            <div>
+                <p>No hay progreso físico registrado</p>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

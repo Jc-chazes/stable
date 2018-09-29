@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mi Perfil</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="sec-profile">
+    <ion-grid *ngIf="user">
+        <div class="sec-picture">
+            <ion-row>
+                <ion-col>
+                    <div class=options-edit>
+                        <button (tap)="showEditProfile()">Editar</button>
+                    </div>
+                    <div class="circ-img">
+                        <img src={{user.photo}}>
+                        <div class="bg-camera" (tap)="changePhoto()">
+                            <img src="assets/images/edit.png">
+                        </div>
+                    </div>
+                    <div>
+                        <h5>{{user.name}} {{user.lastName}}</h5>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div class="sec-info">
+            <ion-row class="div-detail">
+                <ion-col col-2>
+                    <ion-icon ios="ios-mail" md="md-mail" class="i-profile"></ion-icon>
+                </ion-col>
+                <ion-col col-10 class="text-data">
+                    <p>{{user.email}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="div-detail">
+                <ion-col col-2>
+                    <ion-icon ios="ios-call" md="md-call" class="i-profile"></ion-icon>
+                </ion-col>
+                <ion-col col-10 class="text-data">
+                    <p>{{user.celPhone}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="div-detail">
+                <ion-col col-2 >
+                    <ion-icon ios="ios-calendar" md="md-calendar" class="i-profile"></ion-icon>
+                </ion-col>
+                <ion-col col-10 class="text-data">
+                    <p>{{user.birthDate}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="div-detail">
+                <ion-col col-2>
+                    <ion-icon ios="ios-transgender" md="md-transgender" class="i-profile"></ion-icon>
+                </ion-col>
+                <ion-col col-10 class="text-data">
+                    <p>{{user.gender}}</p>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-grid>
+</ion-content>

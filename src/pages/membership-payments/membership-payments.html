@@ -1,0 +1,29 @@
+<ion-content>
+    <ion-grid *ngIf="thereArePayments">
+        <ion-row *ngFor="let payment of payments"  class="div-item">
+            <ion-col>
+                <div>
+                    <p>{{payment.date}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div>
+                    <p>{{currency}} {{payment.amount}}</p>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div>
+                    <p *ngIf="payment.paymentMethodName == null">{{payment.comment}}</p>
+                    <p *ngIf="payment.paymentMethodName != null">{{payment.paymentMethodName}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereArePayments">
+        <ion-row class="box-message">
+            <div>
+                <p>No tienes pagos registrados</p>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

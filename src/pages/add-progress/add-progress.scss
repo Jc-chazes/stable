@@ -1,0 +1,54 @@
+page-add-progress {
+  .grid {
+    padding: 0;
+  }
+  .section-title {
+    font-family: OpenSans-Bold;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #192242;
+    p {
+      text-align: center;
+    }
+  }
+  .options-btns {
+    text-align: right;
+    width: 100%;
+    button {
+      background-color: transparent;
+      padding: 10px;
+      color: $main-color;
+      span {
+        vertical-align: text-top;
+        margin-left: 2px;
+        font-family: OpenSans-Regular;
+        font-weight: bold;
+      }
+    }
+  }
+  .box-date {
+    font-family: OpenSans-Regular;
+    width: 96%;
+    font-size: 13px;
+    color: #646464;
+  }
+  .each-measurement {
+    box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(0, 0, 0, 0.08);
+    margin: 8px auto;
+    font-family: OpenSans-Regular;
+    width: 95%;
+    font-size: 13px;
+    color: #646464;
+    padding: 8px;
+    div {
+      ion-input {
+        width: 100%;
+      }
+    }
+  }
+
+  .icon-photo{
+    font-size: 100px;
+    color: #19a689;
+  }
+}

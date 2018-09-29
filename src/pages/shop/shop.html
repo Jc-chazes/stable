@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Market</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="memberships">
+                Membresías
+            </ion-segment-button>
+            <ion-segment-button value="products">
+                Productos
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content  [ngSwitch]="segment">
+    <div *ngSwitchCase="'memberships'">
+        <ion-grid *ngIf="thereArePlans">
+            <ion-row class="div-item" *ngFor="let plan of plans">
+                <ion-col col-8 (tap)="viewPlanDetail(plan)">
+                    <div class="div-plan">
+                        <div class="div-text">
+                            <p class="text-name">{{plan.name}}</p>
+                            <p class="text-price">{{currency}} {{plan.price}} por persona</p>
+                        </div>
+                    </div>
+                </ion-col>
+                <ion-col col-4>
+                    <div class="div-right">
+                        <button (tap)="showFormPersonalData(plan)">
+                            <span><strong>OBTENER</strong></span>
+                            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                        </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="!thereArePlans">
+            <ion-row class="box-message">
+                <div>
+                    <p>No hay planes online disponibles</p>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngSwitchCase="'products'">
+        <ion-grid *ngIf="products.length > 0 ">
+            <ion-row class="div-item" *ngFor="let product of products">
+                <ion-col col-8>
+                    <div class="div-plan">
+                        <div class="div-text">
+                            <p class="text-name">{{product.title}}</p>
+                            <p class="text-price">{{currency}} {{product.price}}</p>
+                        </div>
+                    </div>
+                </ion-col>
+                <ion-col col-4>
+                    <div class="div-right">
+                        <button (tap)="showNextPage(product)">
+                            <span><strong>OBTENER</strong></span>
+                            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                        </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="products.length == 0">
+            <ion-row class="box-message">
+                <div>
+                    <p>No hay productos online disponibles</p>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

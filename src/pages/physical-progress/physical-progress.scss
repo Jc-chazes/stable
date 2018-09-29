@@ -1,0 +1,82 @@
+page-physical-progress{
+
+  .grid{
+    padding: 0;
+  }
+
+  .btn-add{
+    color: #00CCA5;
+    width: 30px;
+  }
+
+  .div-select{
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+
+    select{
+      background-color: white;
+      border: 1px solid #e6e0e0;
+      border-radius: 10px;
+      padding: 5px 10px;
+      width: 50%;
+    }
+  }
+
+  .div-graphic{
+    margin: 5%;
+    width: 90%;
+
+    canvas{
+      width: 100%;
+    }
+  }
+
+  .box-records{
+    min-height: 60vh;
+    text-align: center;
+
+    .each-record{
+      box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(0, 0, 0, 0.08);
+      margin: 8px auto;
+      font-family: OpenSans-Regular;
+      width: 90%;
+      font-size: 13px;
+      color: #646464;
+      padding: 8px;
+
+      p{
+        margin: 0;
+        margin-top: 4px;
+      }
+
+      .record-name{
+        p{
+          font-family: OpenSans-Bold;
+        }
+      }
+
+      .div-btn{
+        button{
+          background-color: $main-color;
+          color: white;
+          padding: 7px 5px;
+          border-radius: 25px;
+        }
+      }
+
+    }
+  }
+
+  .box-message{
+    background-color: #f4f4f4;
+    color: #a5a4a2;
+    text-align: center;
+    padding-top: 1em;
+    height: 90vh;
+
+    div{
+      width: 100%;
+    }
+  }
+}

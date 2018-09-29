@@ -1,0 +1,29 @@
+<ion-content class="bg-login">
+    <form (submit)="validateLogin()">
+        <div class="logo">
+            <img src="assets/images/fitco-logo-white.png">
+        </div>
+        <div class="inputs-data">
+            <div class="input">
+                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+                <input type="email" name="email" placeholder="Correo Electrónico" autocomplete="off" [(ngModel)]="user.email">
+            </div>
+            <div class="input">
+                <ion-icon ios="ios-lock" md="md-lock"></ion-icon>
+                <input type="password" name="password" placeholder="Contraseña" [(ngModel)]="user.password">
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </div>
+        <a href="http://www.fitcoapp.net/password/forgot_password">
+            Olvidé mi contraseña
+        </a>
+        <div class="box-signup">
+            <div class="box-option">
+                <span>ó</span>
+            </div>
+            <div class="box-btn">
+                <button (tap)="goToSignUp()"><strong>Regístrate</strong></button>
+            </div>
+        </div>
+    </form>
+</ion-content>

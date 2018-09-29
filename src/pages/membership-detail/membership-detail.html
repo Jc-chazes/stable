@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="membership">
+        <ion-row class="box-summary">
+            <ion-col>
+                <ion-row>
+                    <div class="box-title">
+                        <p>{{membership.planName}}</p>
+                    </div>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-3>
+                        <div class="box-detail">
+                            <p class="p-bold">DESDE:</p>
+                            <p class="p-regular">{{membership.startDate}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="box-detail">
+                            <p class="p-bold">HASTA: </p>
+                            <p class="p-regular">{{membership.endDate}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="box-detail">
+                            <p class="p-bold">COSTO:</p>
+                            <p class="p-regular">{{currency}} {{membership.planPrice}}</p>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div class="box-detail">
+                            <p class="p-bold">SESIONES:</p>
+                            <p class="p-regular">{{membership.useSessions}} / {{membership.totalSessions}}</p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row class="tabs-middle">
+            <ion-tabs tabsPlacement="top">
+                <ion-tab [root]="tabAttendances"  tabTitle="Asistencias"></ion-tab>
+                <ion-tab [root]="tabPayments"  tabTitle="Pagos"></ion-tab>
+                <ion-tab [root]="tabFreezes"  tabTitle="Freezes"></ion-tab>
+            </ion-tabs>
+        </ion-row>
+    </ion-grid>
+</ion-content>

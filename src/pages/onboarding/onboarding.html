@@ -1,0 +1,49 @@
+<ion-content class="bg-onboarding">
+    <ion-slides pager>
+        <ion-slide>
+            <div class="box-slide">
+                <div class="bg-lines">
+                    <img src="assets/images/icon-hand.png" alt="">
+                </div>
+                <div class="box-text">
+                    <p class="text-blue">¡HOLA!</p>
+                    <p class="text-green">Bienvenido a Fitco</p>
+                    <div class="box-explain">
+                        <p>Hemos venido a mejorar tu experiencia de deportes</p>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="box-slide">
+                <div class="bg-lines">
+                    <img src="assets/images/icon-goals.png" alt="">
+                </div>
+                <div class="box-text">
+                    <p class="text-blue">TU PROGRESO</p>
+                    <p class="text-green">Tu meta es nuestra meta</p>
+                    <div class="box-explain">
+                        <p>Aquí podrás ver tu progreso para motivarte y llegar a tus metas de deporte</p>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="box-slide">
+                <div class="bg-lines">
+                    <img src="assets/images/icon-schedule.png" alt="">
+                </div>
+                <div class="box-text">
+                    <p class="text-blue">TUS RESERVAS</p>
+                    <p class="text-green">Reserva tus clases desde aquí</p>
+                    <div class="box-explain">
+                        <p>Podrás ver tus clases disponibles y separar un cupo en tus clases favoritas</p>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+    <div class="bottom-button">
+        <button (tap)="goToSchedule()">Empezar</button>
+    </div>
+</ion-content>

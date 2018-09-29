@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mis Reservas</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="future">
+                Próximas
+            </ion-segment-button>
+            <ion-segment-button value="passed">
+                Pasadas
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngSwitch]="segment">
+    <div *ngSwitchCase="'future'">
+        <ion-grid *ngIf="reservesFuture.length > 0" class="box-reserves">
+            <ion-row class="div-item" *ngFor="let reserve of reservesFuture">
+                <ion-col col-12>
+                    <div class="div-reserve" (tap)="viewDetail(reserve)">
+                        <strong>{{reserve.discipline}}</strong>
+                        <p *ngIf="shareBD">{{reserve.establishmentName}}</p>
+                        <p>
+                            <span *ngIf="reserve.type == '0'">Clase</span>
+                            <span *ngIf="reserve.type == '1'">Servicio</span>
+                        </p>
+                        <p class="m-t-5">{{reserve.date}} - {{reserve.hour}}</p>
+                        <p>{{reserve.instructorName}}</p>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="reservesFuture.length == 0">
+            <ion-row class="box-message">
+                <div>
+                    <p>No tienes pŕoximas reservas</p>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngSwitchCase="'passed'">
+        <ion-grid *ngIf="reservesPassed.length > 0" class="box-reserves">
+            <ion-row class="div-item" *ngFor="let reserve of reservesPassed">
+                <ion-col col-12>
+                    <div class="div-data" (tap)="viewDetail(reserve)">
+                        <strong>{{reserve.discipline}}</strong>
+                        <p *ngIf="shareBD">{{reserve.establishmentName}}</p>
+                        <p>
+                            <span *ngIf="reserve.type == '0'">Clase</span>
+                            <span *ngIf="reserve.type == '1'">Servicio</span>
+                        </p>
+                        <p class="m-t-5">{{reserve.date}} - {{reserve.hour}}</p>
+                        <p>{{reserve.instructorName}}</p>
+                    </div>
+                    <div class="div-stars" *ngIf="statusRatingLessons == 'Y'">
+                        <ion-icon [name]="reserve.stars[0]" (click)="setScore(reserve,1)"></ion-icon>
+                        <ion-icon [name]="reserve.stars[1]" (click)="setScore(reserve,2)"></ion-icon>
+                        <ion-icon [name]="reserve.stars[2]" (click)="setScore(reserve,3)"></ion-icon>
+                        <ion-icon [name]="reserve.stars[3]" (click)="setScore(reserve,4)"></ion-icon>
+                        <ion-icon [name]="reserve.stars[4]" (click)="setScore(reserve,5)"></ion-icon>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="reservesPassed.length == 0">
+            <ion-row class="box-message">
+                <div>
+                    <p>No tienes historial de reservas</p>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

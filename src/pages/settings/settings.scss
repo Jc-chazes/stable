@@ -1,0 +1,49 @@
+page-settings{
+
+  $text-color: #727272;
+
+  .box-container{
+
+    .each-div{
+      padding: 1% 7%;
+      font-size: 12px;
+      border-bottom: 1px solid #f0f0f0;
+
+      p{
+        font-family: OpenSans-Regular;
+        color: $text-color;
+      }
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+      }
+    }
+
+    .box-about{
+      .div-about-fitco{
+        h6{
+          color: $text-color;
+        }
+      }
+    }
+
+    .box-others{
+      margin-top: 50px;
+
+      .div-others{
+        h6{
+          color: $text-color;
+        }
+      }
+
+      .div-logout{
+        p{
+          color: #fe4b55;
+        }
+      }
+    }
+
+
+  }
+}

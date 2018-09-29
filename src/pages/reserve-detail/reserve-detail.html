@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="reserve">
+        <ion-row>
+            <div class="reserve-card">
+                <div class="reserve-title">
+                    <p>{{reserve.discipline}}</p>
+                </div>
+                <div class="reserve-detail">
+                    <p>Instructor: {{reserve.data.instructorName}}</p>
+                    <p>Fecha: {{reserve.date}}</p>
+                    <p>Hora: {{reserve.hour}}</p>
+                    <div *ngIf="statusRatingLessons == 'Y'">
+                        <div *ngIf="!showBtnDelete">
+                            <p *ngIf="reserve.comment != null">Mi comentario: {{reserve.comment}}</p>
+                            <div class="div-stars">
+                                <ion-icon [name]="reserve.stars[0]" (click)="setScore(reserve,1)"></ion-icon>
+                                <ion-icon [name]="reserve.stars[1]" (click)="setScore(reserve,2)"></ion-icon>
+                                <ion-icon [name]="reserve.stars[2]" (click)="setScore(reserve,3)"></ion-icon>
+                                <ion-icon [name]="reserve.stars[3]" (click)="setScore(reserve,4)"></ion-icon>
+                                <ion-icon [name]="reserve.stars[4]" (click)="setScore(reserve,5)"></ion-icon>
+                                <div *ngIf="reserve.comment == null">
+                                    <p (click)="showSetComment()" *ngIf="!showSectionComment">¿Deseas dejar un comentario?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reserve-card" *ngIf="statusRatingLessons == 'Y' && showSectionComment">
+                <textarea placeholder="Escribe tu comentario :)" name="comment" [(ngModel)]="comment"></textarea>
+                <div class="div-buttons">
+                    <button class="btn-cancel" (click)="hideSetComment()">Cancelar</button>
+                    <button class="btn-save" (click)="setComment()">Guardar</button>
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div class="btn-delete" *ngIf="showBtnDelete">
+                <button (tap)="deleteReserve()">
+                    <img src="assets/images/trash.png">
+                    <span>ELIMINAR RESERVA</span>
+                </button>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

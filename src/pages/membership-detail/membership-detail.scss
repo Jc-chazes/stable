@@ -1,0 +1,89 @@
+page-membership-detail{
+  .grid{
+    padding: 0;
+  }
+
+  .box-summary{
+    width: 100%;
+    padding: 10px 0;
+    color: #646464;
+
+    p{
+      margin: 5px 0 0 0;
+    }
+
+    .box-title{
+      text-align: center;
+      width: 100%;
+      margin-bottom: 10px;
+
+      p{
+        font-family: OpenSans-Regular;
+        font-size: 18px;
+      }
+    }
+
+    .box-detail{
+      font-size: 10px;
+
+      .p-bold{
+        font-family: OpenSans-Bold;
+      }
+
+      .p-regular{
+        font-family: OpenSans-Regular;
+      }
+    }
+
+  }
+
+  .tabs-middle{
+    position: relative;
+    width: 100%;
+    height: 500px;
+  }
+
+  .middle-nav{
+
+    .div-border{
+      border: 1px solid #bbbbbb;
+    }
+
+    .div-col{
+      width: 100%;
+      text-align: center;
+
+      .div-icon{
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .boxs-table{
+    text-align: center;
+
+    p{
+      margin: 0;
+    }
+
+    .box-header{
+      border-bottom: 1px solid $main-color;
+
+      p{
+        color: $main-color;
+      }
+    }
+
+    .div-item{
+      padding: 5px 0;
+    }
+  }
+
+}

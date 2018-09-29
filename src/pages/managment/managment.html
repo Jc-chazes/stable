@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons start *ngIf="QR">
+            <button ion-button (tap)="goToQrCode()">
+                <img src="assets/images/qr-code.png" alt="">
+            </button>
+        </ion-buttons>
+        <ion-title>Mi Información</ion-title>
+        <ion-buttons end>
+            <button ion-button (tap)="viewSettings()">
+                <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="user">
+        <ion-row class="box-profile">
+           <ion-col col-8>
+               <div class="img-profile">
+                   <img src={{user.photo}}>
+               </div>
+               <div class="data-profile">
+                   <h6>{{user.name}} {{user.lastName}}</h6>
+                   <div class="div-centerfit">
+                       <p>entrena en</p>
+                       <span *ngIf="!thereAreMoreEstablishments">{{establishmentName}}</span>
+                       <span *ngIf="thereAreMoreEstablishments" (tap)="showEstablishments()">
+                           {{establishmentName}}
+                           <ion-icon name="arrow-dropdown"></ion-icon>
+                       </span>
+                   </div>
+               </div>
+           </ion-col>
+            <ion-col col-4>
+                <div class="text-right">
+                    <button (tap)="viewProfile()">
+                        <span>Ver Perfil </span>
+                        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                    </button>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="box-list">
+            <div class="item-list" (tap)="goToMemberships()">
+              <div class="div-text">
+                  <p>Mis Membresías</p>
+              </div>
+            </div>
+            <div class="item-list" (tap)="goToReserves()">
+              <div class="div-text">
+                  <p>Mis Reservas</p>
+              </div>
+            </div>
+            <div class="item-list" (tap)="goToProducts()">
+              <div class="div-text">
+                  <p>Mis Productos</p>
+              </div>
+            </div>
+            <div class="item-list" (tap)="goToUnpaids()">
+                <div class="div-text">
+                    <p>Mis Clases Sueltas</p>
+                </div>
+            </div>
+            <div class="item-list" (tap)="goToDebts()">
+              <div class="div-text">
+                  <p>Mis Deudas</p>
+              </div>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,3 +1,40 @@
 page-home {
 
+  .grid{
+    padding: 0;
+  }
+
+  .box-list{
+    margin: 10px;
+    font-family: OpenSans-Regular;
+    color: #818181;
+
+    .div-item{
+      padding: 10px;
+
+      .div-icon, .div-text{
+        display: inline-block;
+      }
+
+      .div-icon{
+        width: 20px;
+        height: 20px;
+
+        img{
+          width: 100%;
+        }
+      }
+
+      .div-text{
+        margin-left: 10px;
+        vertical-align: super;
+
+        p{
+          margin: 0;
+        }
+      }
+
+    }
+  }
 }
+

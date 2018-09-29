@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Notificaciones
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid *ngIf="thereAreNotifications || searchWord">
+      <ion-searchbar (ionInput)="searchNotification($event)" (ionClear)="clearNotification($event)" placeholder="Buscar notificaciones" [(ngModel)]="searchWord">
+        </ion-searchbar>
+    <ion-row class="each-row" *ngFor="let notify of listNotifications; let i = index" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <ion-col col-2>
+        <div class="circle">
+          <p>{{notify.title.slice(0,1)}}</p>
+        </div>
+      </ion-col>
+      <ion-col col-10 [ngClass]="{'new-message': notify.statusNtUser == '0'}">
+        <div class="div-text">
+            <p class="p-title">{{notify.title}}
+                <ion-icon color="success"  item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'">
+                  </ion-icon>
+            </p>
+
+          <p *ngIf="isGroupShown(i)"  [ngClass]="{
+            'p-text': true,
+            'fontsize-10': notify.text.length > 300}">{{notify.text}}</p>
+        </div>
+        <div class="date">
+          <p>{{notify.timeAgo}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!thereAreNotifications">
+    <ion-row class="box-message">
+      <div>
+        <p>Todavía no tienes notificaciones</p>
+      </div>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="getNotifications($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
+
+
+

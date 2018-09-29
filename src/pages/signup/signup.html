@@ -1,0 +1,35 @@
+<ion-content class="bg-signup">
+    <form (submit)="validateData()">
+        <div class="logo">
+            <img src="assets/images/fitco-logo-white.png">
+        </div>
+        <div class="inputs-data">
+            <div class="input">
+                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+                <input type="text" name="names" placeholder="Nombres" [(ngModel)]="newUser.name">
+            </div>
+            <div class="input">
+                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+                <input type="text" name="lastname" placeholder="Apellidos" [(ngModel)]="newUser.lastName">
+            </div>
+            <div class="input">
+                <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+                <input type="email" name="email" placeholder="Correo Electrónico" autocomplete="off" [(ngModel)]="newUser.email">
+            </div>
+            <div class="input">
+                <ion-icon ios="ios-lock" md="md-lock"></ion-icon>
+                <input type="password" name="password" placeholder="Contraseña" [(ngModel)]="newUser.password">
+            </div>
+            <div class="div-checkbox">
+                <ion-checkbox [(ngModel)]="aceptTerms" name="aceptTerms" (ionChange)="clicCheckbox()"></ion-checkbox>
+                <label>
+                    He leído y acepto los
+                    <a href="https://fitcolatam.com/terminos-condiciones">
+                        términos y condiciones
+                    </a>
+                </label>
+            </div>
+            <button class="btn-signup" type="submit">Registrarme</button>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-content class="bg-centers-preview">
+    <div class="box-center">
+        <h1>Selecciona tu centro</h1>
+        <div class="divs-centers">
+            <div class="div-center" *ngFor="let establishment of establishments" (tap)="selectedEstablishment(establishment)">
+                <div class="logo">
+                    <img src="{{establishment.logoEstablishment}}" alt="Logo">
+                </div>
+                <div class="name">
+                    <p>{{establishment.establishmentName}}</p>
+                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

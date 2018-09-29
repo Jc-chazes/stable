@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="plan">
+        <ion-row>
+            <div class="plan-card">
+                <div class="plan-name">
+                    <p>{{plan.name}}</p>
+                </div>
+                <div class="plan-detail">
+                    <div class="plan-dscrip">
+                        <p>{{plan.description}}</p>
+                    </div>
+                    <p>Sesiones: {{plan.sessions}}</p>
+                    <p>Vigencia:
+                        <span *ngIf="plan.months == 1">{{plan.months}} mes </span>
+                        <span *ngIf="plan.months > 1">{{plan.months}} meses </span>
+                        <span *ngIf="plan.days == 1">{{plan.days}} día</span>
+                        <span *ngIf="plan.days > 1">{{plan.days}} días</span>
+                    </p>
+                    <p *ngIf="plan.freezeNumber">Freeze: {{plan.freezeNumber}} días</p>
+                    <p>Precio: {{currency}} {{plan.price}}</p>
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div class="plan-description">
+                <div class="div-bottom">
+                    <button (tap)="showFormPersonalData()">OBTENER</button>
+                </div>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

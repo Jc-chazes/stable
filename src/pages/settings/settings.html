@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Configuración</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="box-container">
+        <div class="box-about">
+            <div class="each-div div-about-fitco">
+                <h6>Acerca de Fitco</h6>
+                <p>Esta es la versión 2.0 del app, así que imaginate cómo estará la app 3.0</p>
+            </div>
+            <div class="each-div">
+                <p>
+                    <a href="https://fitcolatam.com/terminos-condiciones">Términos y Condiciones</a>
+                </p>
+            </div>
+        </div>
+        <div class="box-others">
+            <div class="each-div div-others">
+                <h6>Otros</h6>
+                <p (tap)="goToPassword()">Cambiar contraseña</p>
+            </div>
+            <div class="each-div div-logout">
+                <p (tap)="logout()">Cerrar Sesión</p>
+            </div>
+        </div>
+    </div>
+</ion-content>

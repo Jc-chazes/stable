@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mis Clases Sueltas</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="thereAreUnpaids" class="box-unpaids">
+        <div class="title-page">
+            <p>Estas son las clases sueltas que tienes</p>
+        </div>
+        <ion-row class="div-item" *ngFor="let unpaid of unpaids">
+            <ion-col col-5>
+                <div class="unpaid-lesson">
+                    <p>{{unpaid.lessonName}}</p>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <div class="unpaid-date">
+                    <p>{{unpaid.dateLesson}}</p>
+                    <p>{{unpaid.startTIme}}</p>
+                </div>
+            </ion-col>
+            <ion-col col-3>
+                <div class="unpaid-amount">
+                    <p *ngIf="unpaid.amount != 0" class="unpaid-red">{{currency}} {{unpaid.amount}}</p>
+                    <p *ngIf="unpaid.amount == 0" class="unpaid-green">PAGADO</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereAreUnpaids">
+        <ion-row class="box-message">
+            <div>
+                <p>No clases sueltas registradas</p>
+            </div>
+        </ion-row>
+    </ion-grid>
+</ion-content>

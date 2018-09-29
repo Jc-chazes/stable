@@ -1,0 +1,22 @@
+<ion-content class="bg-searcher">
+    <div>
+        <div class="div-text">
+            <h1>Busca tu centro deportivo</h1>
+        </div>
+        <ion-searchbar
+                (ionInput)="searchEstablishment($event)"
+                (ionClear)="clearEstablishments($event)"
+                placeholder="Buscar"
+        ></ion-searchbar>
+        <div *ngIf="establishments" class="box-establishments">
+            <div class="div-row" *ngFor="let establishment of establishments" (tap)="chooseEstablishment(establishment)">
+                <div class="div-logo">
+                    <img src="{{establishment.photo}}" alt="logo">
+                </div>
+                <div class="div-name">
+                    <p>{{establishment.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

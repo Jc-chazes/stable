@@ -14,3 +14,139 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+/*TIPOGRAFIA OPENSANS*/
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url('../assets/fonts/opensans-light-webfont.woff') format('woff'),
+  url('../assets/fonts/opensans-light-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../assets/fonts/opensans-regular-webfont.woff') format('woff'),
+  url('../assets/fonts/opensans-regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('../assets/fonts/opensans-bold-webfont.woff') format('woff'),
+  url('../assets/fonts/opensans-regular-webfont.woff2') format('woff2');
+}
+
+/*COLORES*/
+$main-color: #07dfdf;
+$blue-color: rgba(25, 34, 66, 0.8);
+
+
+/*CHECKBOX*/
+.checkbox-md, .checkbox-ios{
+
+  .checkbox-icon{
+    background-color: transparent;
+    border: 1px solid white;
+  }
+}
+
+/*TOOLBAR*/
+.toolbar-title{
+  color: #818181;
+  font-family: OpenSans-Regular;
+}
+
+.bar-button-default-ios, .bar-button-default-md{
+  color: $main-color;
+}
+
+/*SEGMENT*/
+.segment-md{
+  .segment-button{
+    color: #bbb;
+  }
+  .segment-button.segment-activated{
+    border-color: $main-color;
+    color: $main-color;
+  }
+}
+.segment-ios{
+  .segment-button{
+    color: #bbb;
+  }
+  .segment-button.segment-activated{
+    border-color: $main-color;
+    color: white;
+  }
+}
+.swiper-pagination-bullet-active{
+  background: $main-color;
+}
+
+/*ALERT*/
+.alert-md {
+  .alert-wrapper{
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .alert-head, .alert-message{
+    text-align: center;
+    padding: 10px;
+
+    h6{
+      margin: 5px 0 0 0;
+    }
+  }
+
+  .alert-button{
+    border-top: 0px;
+    width: 100%;
+
+    .button-inner{
+      color: $main-color;
+      font-weight: 400;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+.alert-ios, .alert-md{
+  .alert-message{
+    color: #818181;
+  }
+}
+
+.icon-booking{
+  width: 50px;
+}
+
+.title-booking{
+  font-family: OpenSans-Bold;
+  color: #192242;
+  font-size: 12px;
+}
+
+.alert-message{
+  overflow-y: hidden;
+}
+
+/*TAB*/
+.tabs-ios, .tabs-md{
+  .tab-button-text{
+    font-size: 10px;
+    font-family: OpenSans-Regular;
+  }
+}
+
+.hidden-tab{
+  display: none !important;
+}
+
+.show-tab{
+  display: inherit !important;
+}
+
+.second-action{
+  background-color: #b997f1 !important;
+}

@@ -1,0 +1,56 @@
+page-plan-detail{
+  .grid{
+    padding: 0;
+  }
+
+  .plan-card{
+    width: 85%;
+    padding: 5%;
+    margin: 10px auto;
+    box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.08);
+
+    .plan-name{
+      margin: 10px 0;
+      font-size: 15px;
+
+      p{
+        margin: 0;
+        color: #818181;
+        font-family: OpenSans-Bold;
+      }
+    }
+
+    .plan-detail{
+      .plan-dscrip{
+        margin: 0 0 15px 0;
+      }
+      p {
+        font-family: OpenSans-Regular;
+        font-size: 13px;
+        margin: 5px 0;
+        color: #818181;
+      }
+    }
+  }
+
+  .plan-description{
+    width: 100%;
+    margin: 25px 0;
+
+    .div-bottom{
+      text-align: center;
+
+      button{
+        width: 125px;
+        background-color: $main-color;
+        color: white;
+        padding: 8px 5px;
+        border-radius: 50px;
+        margin-bottom: 30px;
+        font-family: OpenSans-Light;
+        font-weight: bold;
+      }
+    }
+
+  }
+}

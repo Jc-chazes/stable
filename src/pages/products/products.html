@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mis Productos</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="thereAreProducts" class="box-products">
+        <div class="title-page">
+            <p>Estos son los productos que has adquirido</p>
+        </div>
+        <ion-row class="div-item" *ngFor="let product of products">
+            <ion-col col-6>
+                <div class="product-name">
+                    <p>{{product.productName}}</p>
+                </div>
+            </ion-col>
+            <ion-col col-3>
+                <div class="product-cant">
+                    <p>{{product.quantity}} UND</p>
+                </div>
+            </ion-col>
+            <ion-col col-3>
+                <div class="product-price">
+                    <p>{{currency}} {{product.totalPrice}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!thereAreProducts">
+        <div class="box-message">
+            <div>
+                <p>No tienes productos registrados</p>
+            </div>
+        </div>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,73 @@
+page-lesson-detail {
+  .grid {
+    padding: 0;
+  }
+  .lesson-card {
+    width: 85%;
+    padding: 5%;
+    margin: 10px auto;
+    box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.08);
+    .discipline-name {
+      margin: 10px 0;
+      font-size: 15px;
+      p {
+        margin: 0;
+        color: #818181;
+        font-family: OpenSans-Bold;
+      }
+      .p-instructor {
+        font-size: 14px;
+        font-family: OpenSans-Regular;
+        font-size: 12px;
+      }
+    }
+    .discipline-details {
+      div {
+        ion-icon {
+          color: #e6e6e6;
+        }
+        p {
+          font-family: OpenSans-Regular;
+          font-size: 13px;
+          margin: 2px 10px;
+          display: inline-block;
+          color: #818181;
+        }
+      }
+    }
+  }
+  .lesson-description {
+    width: 100%;
+    margin: 25px 0;
+    .div-bottom {
+      text-align: center;
+      button {
+        width: 125px;
+        background-color: $main-color;
+        color: white;
+        padding: 8px 5px;
+        border-radius: 50px;
+        margin-bottom: 30px;
+        font-family: OpenSans-Light;
+        font-weight: bold;
+      }
+    }
+  }
+  .btn-delete {
+    width: 100%;
+    margin: 25px 0;
+    text-align: center;
+    button {
+      background-color: transparent;
+      color: #e93a3a;
+      padding: 8px 5px;
+      ;
+      font-family: OpenSans-Bold;
+      font-size: 10px;
+      img {
+        width: 15px;
+        vertical-align: sub;
+      }
+    }
+  }
+}

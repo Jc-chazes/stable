@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="lesson">
+    <ion-row>
+      <div class="lesson-card">
+        <div class="discipline-name">
+          <p>{{lesson.disciplineName}}</p>
+          <p class="p-instructor" *ngIf="lesson.instructorName != null">Por {{lesson.instructorName}}</p>
+        </div>
+        <div class="discipline-details">
+          <div>
+            <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+            <p>{{lesson.date}}</p>
+          </div>
+          <div>
+            <ion-icon ios="ios-clock" md="md-clock"></ion-icon>
+            <p>{{lesson.start}} - {{lesson.end}}</p>
+          </div>
+          <div>
+            <ion-icon ios="ios-pin" md="md-pin"></ion-icon>
+            <p>{{lesson.roomName}}</p>
+          </div>
+          <div>
+            <ion-icon ios="ios-contacts" md="md-contacts"></ion-icon>
+            <p>{{lesson.reserves}} / {{lesson.occupancy}}</p>
+          </div>
+          <div *ngIf="postWaitingList !=  0">
+            <br>
+            <p style="text-align: center">
+              <ion-badge item-end class="second-action">n° {{postWaitingList}}</ion-badge> en la lista de espera
+            </p>
+          </div>
+          <div class="btn-delete" *ngIf="postWaitingList !=  0">
+            <button (tap)="deleteWaitingList()">
+              <img src="assets/images/trash.png" alt="">
+              <span>Salir de lista de espera</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <div class="lesson-description">
+        <div class="div-bottom">
+          <button (tap)="showSimpleRerserveAlert(lesson)" *ngIf="lesson.reserves < lesson.occupancy || !statusWaitingList">Reservar</button>
+          <button class="btn-second-action" (tap)="showSimpleRerserveAlert(lesson, true)" *ngIf="lesson.reserves >= lesson.occupancy && statusWaitingList && postWaitingList == 0">
+            Esperar </button>
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

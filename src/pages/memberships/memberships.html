@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mis Membresías</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="box-memberships" *ngIf="thereAreMemberships">
+        <ion-row class="each-membership" *ngFor="let membership of memberships">
+            <ion-col col-10>
+                <div class="membership-data">
+                    <div class="membership-title">
+                        <div [ngClass]="{
+                        'circle': true,
+                        'm-activa': membership.status === '1',
+                        'm-inactiva':membership.status === '0'}"></div>
+                        <p>{{membership.planName}}</p>
+                    </div>
+                    <div class="membership-detail">
+                        <p><span>DESDE: </span>{{membership.startDate}}</p>
+                        <p><span>HASTA: </span>{{membership.endDate}}</p>
+                        <p><span>COSTO: </span>{{currency}} {{membership.planPrice}}</p>
+                        <p><span>SESIONES: </span>{{membership.useSessions}} / {{membership.totalSessions}}</p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-2>
+                <div class="membership-arrow" (tap)="viewDetail(membership)">
+                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div class="box-message" *ngIf="!thereAreMemberships">
+        <div>
+            <p>No tienes membresías registradas</p>
+        </div>
+    </div>
+</ion-content>
