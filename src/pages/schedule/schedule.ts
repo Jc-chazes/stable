@@ -498,14 +498,6 @@ export class SchedulePage {
             }, te notificaremos en caso de liberarse un espacio para ti`,
             buttons: ['OK']
           });
-          if( err.title == 'RESERVES.ERROR_MEMBERSHIPS' ){
-            alert.addButton({
-              text: 'Ir a comprar membresía',
-              handler: ()=>{
-                this.navCtrl.parent.select(1);
-              }
-            });
-          }
           alert.present();
         } else {
           let alert = this.alertCtrl.create({
@@ -516,6 +508,14 @@ export class SchedulePage {
             subTitle: message,
             buttons: ['OK']
           });
+          if( err.title == 'RESERVES.ERROR_MEMBERSHIPS' ){
+            alert.addButton({
+              text: 'Ir a comprar membresía',
+              handler: ()=>{
+                this.navCtrl.parent.select(1);
+              }
+            });
+          }
           alert.present();
         }
       }
