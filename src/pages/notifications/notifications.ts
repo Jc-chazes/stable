@@ -48,6 +48,7 @@ export class NotificationsPage {
                 this.ga.trackView('notificationsPage');
             })
             .catch(e => console.log('Error starting GoogleAnalytics', e));
+        this.notificationsService.getUnreadNotifications().subscribe();
     }
 
     ionViewWillEnter() {

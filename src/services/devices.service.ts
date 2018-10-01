@@ -60,7 +60,6 @@ export class DevicesService {
         return Observable.fromPromise(
             this.getToken()
         ).flatMap( token => {
-            debugger;
             if(!token){
                 return Observable.of(false);
             }

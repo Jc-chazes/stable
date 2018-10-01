@@ -34,6 +34,7 @@
     "cordova-android": "7.0.0",
     "cordova-android-firebase-gradle-release": "^1.0.2",
     "cordova-android-play-services-gradle-release": "^1.4.3",
+    "cordova-browser": "5.0.4",
     "cordova-custom-config": "^5.0.2",
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-camera": "^4.0.3",
@@ -88,7 +89,8 @@
       "cordova-custom-config": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

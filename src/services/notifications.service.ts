@@ -41,7 +41,8 @@ export class NotificationsService {
         return this.authService.get(url)
             .map(response => {
                 let res = response.json();
-                this.firebaseNative.setBadgeNumber( res.unread ).then();
+                // this.firebaseNative.setBadgeNumber( res.unread ).then();
+                this.setUnreadCounter(res.unread);
                 return res;
             });
     }
@@ -67,6 +68,13 @@ export class NotificationsService {
         ++notifications.unreadCount;
         this.appState.setState(notifications);
         this.firebaseNative.setBadgeNumber( notifications.unreadCount ).then();
+    }
+
+    setUnreadCounter(counter){
+        let { notifications } = this.appState.currentState;
+        notifications.unreadCount = counter;
+        this.appState.setState(notifications);
+        this.firebaseNative.setBadgeNumber( counter ).then();
     }
 
 
