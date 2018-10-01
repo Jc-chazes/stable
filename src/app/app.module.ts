@@ -86,6 +86,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { DevicesService } from '../services/devices.service';
+import { NavigationService } from '../services/navigation.service';
 
 @NgModule({
     declarations: [
@@ -204,7 +205,8 @@ import { DevicesService } from '../services/devices.service';
         AppStateService,
         DevicesService,
         Firebase,
-        Device
+        Device,
+        NavigationService
     ]
 })
 export class AppModule {

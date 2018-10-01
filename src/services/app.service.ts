@@ -8,5 +8,6 @@ export class AppService {
   //  gateway = "http://localhost:9000"
   //  gateway = "http://34.201.65.13:9000" // Diana
   //gateway = "http://52.23.236.228:9000" // Wilder
-  gateway = "http://172.16.16.51:9000" //local
+  // gateway = "http://172.16.16.51:9000" //local
+  gateway = "http://192.168.0.5:9000"
 }

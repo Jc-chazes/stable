@@ -12,6 +12,8 @@ import {AuthService} from "./../../services/auth.service";
 import {NavController} from 'ionic-angular';
 import { AppStateService } from '../../services/app-state.service';
 import { DevicesService } from '../../services/devices.service';
+import { NavigationService } from '../../services/navigation.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     templateUrl: 'tabs.html'
@@ -30,14 +32,17 @@ export class TabsPage {
 
     appState: any;
 
-    @ViewChild("nametab") nametab: Tabs;
+    navigationSub: Subscription;
+
+    @ViewChild("tabs") tabs: Tabs;
 
     constructor(private localNotifications: LocalNotifications,
                 public navCtrl: NavController,
                 public events: Events,
                 private authService: AuthService,
                 private appStateService: AppStateService,
-                private devices: DevicesService) {
+                private devices: DevicesService,
+                private navigation: NavigationService) {
 
         this.appStateService.onStateChange.subscribe( state => {
           this.notificationCount = state.notifications.unreadCount;
@@ -46,16 +51,23 @@ export class TabsPage {
           notifications: {
             unreadCount: localStorage.getItem('unreadNotificationsCount')
         } });
-
+        this.navigationSub = navigation.onNavigate.subscribe( tabIndex => {
+            if(tabIndex != null){
+                this.tabs.select(tabIndex);
+            }
+        })
 
     }
 
     ionViewDidLoad(){
         this.devices.populate().subscribe();
         this.events.subscribe('gototab', () => {
-            this.nametab.select(2);
+            this.tabs.select(2);
         })
     }
-
+    
+    ionViewDidLeave(){
+        this.navigationSub.unsubscribe();
+    }
 
 }

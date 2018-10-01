@@ -10,6 +10,7 @@ import { AppStateService } from './app-state.service';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { NotificationsService } from './notifications.service';
+import { NavigationService } from './navigation.service';
 
 
 /*
@@ -30,7 +31,8 @@ export class DevicesService {
         private localNotifications: LocalNotifications,
         private appState: AppStateService,
         private ngZone: NgZone,
-        private notifications: NotificationsService
+        private notifications: NotificationsService,
+        private navigation: NavigationService
     ) { }
 
     private async getToken(): Promise<string>{
@@ -54,10 +56,11 @@ export class DevicesService {
     /**
      * Initialize required resources. Call after platform is ready.
      */
-    public populate(): Observable<boolean> {
+    public populate(): Observable<boolean> {        
         return Observable.fromPromise(
             this.getToken()
         ).flatMap( token => {
+            debugger;
             if(!token){
                 return Observable.of(false);
             }
@@ -69,10 +72,11 @@ export class DevicesService {
                 // alert('Success device!');
                 this.listenToNotifications();
                 return true;
-            }).catch( err => {
-                // alert( err );
-                return Observable.of(false);
             })
+        }).catch( err => {
+            // alert( err );
+            console.error(err);
+            return Observable.of(false);
         });
     }
 
@@ -121,10 +125,17 @@ export class DevicesService {
             this.localNotifications.schedule({
                 title: messageTitle,
                 text: messageText,
-                foreground: true,
-                smallIcon: msg.smallIcon || 'res://icon.png',
-                icon: msg.icon || 'file://assets/images/icon.png'
-            });     
+                color: '#23c7b1',
+                smallIcon: 'res://notification_icon.png',
+                icon:'file://assets/images/icon.png'
+            });
+        });
+
+        this.localNotifications.on("click").subscribe( (notification) => {
+            // alert(JSON.stringify(notification));
+            this.ngZone.run( () => {
+                this.navigation.navigateTo('NOTIFICATIONS');
+            })
         });
     }
 
