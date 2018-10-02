@@ -3,7 +3,7 @@
     <name>fitco-app</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://172.16.21.176:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -117,7 +117,6 @@
         <variable name="FIREBASE_VERSION" value="11.+" />
     </plugin>
     <plugin name="cordova-custom-config" spec="^5.0.2" />
-    <allow-navigation href="http://172.16.21.176:8100" sessionid="12b2023b" />
     <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.4" />
 </widget>
