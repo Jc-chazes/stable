@@ -3,11 +3,9 @@
     <ion-tab [root]="tab2Root" tabIcon="basket" tabTitle="Market"></ion-tab>
     <ion-tab [root]="tab3Root" tabIcon="heart" tabTitle="Estado"></ion-tab>
     <ion-tab [root]="tab4Root" tabIcon="chatbubbles" tabTitle="Notificaciones"
-             tabBadge="{{notificationCount}}" show="{{notificationCount > 0}}" tabBadgeStyle="danger"
+             tabBadge="{{notificationCount}}" show="{{allowNotifications}}" tabBadgeStyle="danger"
 
     ></ion-tab>
-    <ion-tab [root]="tab4Root" tabIcon="chatbubbles" tabTitle="Notificaciones" show="{{notificationCount == 0}}"
 
-    ></ion-tab>
     <ion-tab [root]="tab5Root" tabIcon="contact" tabTitle="Perfil"></ion-tab>
 </ion-tabs>

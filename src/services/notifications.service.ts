@@ -15,9 +15,9 @@ export class NotificationsService {
         private firebaseNative: Firebase) { }
 
 
-    getNotifications(page) {
+    getNotifications(page,searchWord?) {
         let userId = this.authService.userId;
-        let url = this.appService.gateway + `/api/notifications/by-user/${userId}?cbp=10&page=${page}&orderby=id&order=desc`;
+        let url = this.appService.gateway + `/api/notifications/by-user/${userId}?cbp=10&page=${page}&orderby=id&order=desc&string=${searchWord}`;
         return this.authService.get(url)
             .map(response => {
                 let res = response.json();

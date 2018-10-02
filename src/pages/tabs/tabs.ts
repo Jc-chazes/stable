@@ -33,7 +33,9 @@ export class TabsPage {
     appState: any;
 
     navigationSub: Subscription;
-
+    get allowNotifications(): boolean{
+      return localStorage.getItem('statusNotificationMobile') == 'Y' ? true : false;
+    }
     @ViewChild("tabs") tabs: Tabs;
 
     constructor(private localNotifications: LocalNotifications,
@@ -45,7 +47,7 @@ export class TabsPage {
                 private navigation: NavigationService) {
 
         this.appStateService.onStateChange.subscribe( state => {
-          this.notificationCount = state.notifications.unreadCount;
+          this.notificationCount = state.notifications.unreadCount == 0 ? null : state.notifications.unreadCount;
         });
         this.appStateService.setState({
           notifications: {
@@ -57,6 +59,8 @@ export class TabsPage {
             }
         })
 
+      //  this.allowNotifications =  localStorage.getItem('statusNotificationMobile') == 'Y' ? true : false
+
     }
 
     ionViewDidLoad(){
@@ -65,7 +69,7 @@ export class TabsPage {
             this.tabs.select(2);
         })
     }
-    
+
     ionViewDidLeave(){
         this.navigationSub.unsubscribe();
     }

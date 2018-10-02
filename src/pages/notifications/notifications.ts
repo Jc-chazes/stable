@@ -14,7 +14,7 @@ export class NotificationsPage {
     thereAreNotifications: boolean;
     listNotifications = [];
     posInitial = 1;
-    searchWord = null;
+    searchWord = '';
     shownGroup = null;
     constructor(public navCtrl: NavController,
                 private notificationsService: NotificationsService,
@@ -54,13 +54,15 @@ export class NotificationsPage {
     ionViewWillEnter() {
         this.posInitial = 1;
         this.searchWord = null;
+        this.listNotifications = [];
         this.getNotifications();
     }
 
     getNotifications(infiniteScroll?) {
-
         // this.listNotifications = [];
-        this.notificationsService.getNotifications(this.posInitial)
+        this.listNotifications =  this.searchWord != null && this.searchWord != undefined ?  [] : this.listNotifications;
+        this.posInitial = this.searchWord != null && this.searchWord != undefined ? 1 : this.posInitial ;
+        this.notificationsService.getNotifications(this.posInitial,this.searchWord)
             .subscribe(
                 success => {
                     if (success.length != 0) {

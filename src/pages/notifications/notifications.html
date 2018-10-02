@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-grid *ngIf="thereAreNotifications || searchWord">
-      <ion-searchbar (ionInput)="searchNotification($event)" (ionClear)="clearNotification($event)" placeholder="Buscar notificaciones" [(ngModel)]="searchWord">
+      <ion-searchbar (ionInput)="getNotifications()" (ionClear)="clearNotification($event)" placeholder="Buscar notificaciones" [(ngModel)]="searchWord">
         </ion-searchbar>
     <ion-row class="each-row" *ngFor="let notify of listNotifications; let i = index" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
       <ion-col col-2>
