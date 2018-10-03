@@ -101,6 +101,10 @@ export class DevicesService {
 
         this.firebaseNative.onNotificationOpen().subscribe( (msg) => {
 
+            if(msg.tap){
+                return ;
+            }
+
             this.ngZone.run( () => {
                 this.notifications.incrementUnreadCounter();
             });
@@ -136,6 +140,12 @@ export class DevicesService {
                 this.navigation.navigateTo('NOTIFICATIONS');
             })
         });
+
+        this.platform.resume.subscribe( () => {
+            this.ngZone.run( () => {
+                this.notifications.getUnreadNotifications().subscribe();
+            })
+        })
     }
 
 }
