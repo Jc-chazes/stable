@@ -107,14 +107,14 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.3">
-        <variable name="PLAY_SERVICES_VERSION" value="11.+" />
+        <variable name="PLAY_SERVICES_VERSION" value="12.0.0" />
     </plugin>
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.6">
-        <variable name="GMS_VERSION" value="11.+" />
+        <variable name="GMS_VERSION" value="12.0.0" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="^2.0.2" />
     <plugin name="cordova-android-firebase-gradle-release" spec="^1.0.2">
-        <variable name="FIREBASE_VERSION" value="11.+" />
+        <variable name="FIREBASE_VERSION" value="12.0.0" />
     </plugin>
     <plugin name="cordova-custom-config" spec="^5.0.2" />
     <engine name="browser" spec="5.0.4" />
