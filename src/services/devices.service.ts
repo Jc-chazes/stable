@@ -56,7 +56,7 @@ export class DevicesService {
     /**
      * Initialize required resources. Call after platform is ready.
      */
-    public populate(): Observable<boolean> {        
+    public populate(): Observable<boolean> {
         return Observable.fromPromise(
             this.getToken()
         ).flatMap( token => {
@@ -66,7 +66,12 @@ export class DevicesService {
             // alert(token);
             return this.addDeviceToUser(
                 token,
-                { id: this.authService.userId, establishmentId: this.authService.establishmentId }
+                { 
+                    id: this.authService.userId, 
+                    establishmentId: this.authService.establishmentId,
+                    name: this.authService.userLogged.name,
+                    lastName: this.authService.userLogged.lastName,
+                    email: this.authService.userLogged.email }
             ).map( resp  => {
                 // alert('Success device!');
                 this.listenToNotifications();

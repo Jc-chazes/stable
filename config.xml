@@ -121,7 +121,7 @@
     <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-ionic" spec="^5.2.4">
         <variable name="APP_ID" value="d0f592d5" />
-        <variable name="CHANNEL_NAME" value="Master" />
+        <variable name="CHANNEL_NAME" value="Production" />
         <variable name="UPDATE_METHOD" value="auto" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />

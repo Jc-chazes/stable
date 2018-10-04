@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import {AppService} from "./app.service";
+import { Firebase } from '@ionic-native/firebase';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,8 @@ export class AuthService {
 
     constructor(
         private http : Http,
-        private appService: AppService
+        private appService: AppService,
+        private firebaseNative: Firebase
     ){}
 
     public login(user){
@@ -37,6 +39,7 @@ export class AuthService {
 
     public logout(){
         localStorage.clear();
+        this.firebaseNative.setBadgeNumber( 0 ).then();
     }
 
     public get(url){
