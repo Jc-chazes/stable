@@ -9,6 +9,7 @@ import {GoogleAnalytics} from '@ionic-native/google-analytics';
 import {AuthService} from "../../services/auth.service";
 import { MembershipsService } from '../../services/memberships.service';
 import { ProductsService } from "../../services/products.service";
+import { EstablishmentsService } from '../../services/establishments.service';
 
 @Component({
     selector: 'page-shop',
@@ -33,7 +34,8 @@ export class ShopPage {
         private authService: AuthService,
         private productsService: ProductsService,
         private alertCtrl: AlertController,
-        private memberships: MembershipsService
+        private memberships: MembershipsService,
+        private establishments: EstablishmentsService
     ) {
         this.currency = localStorage.getItem('currencyCode');
     }
@@ -144,47 +146,50 @@ export class ShopPage {
                 this.ga.trackEvent('Market', 'obtener', this.authService.userLogged.establishmentName+' / '+ this.authService.establishmentId +' / '+plan.name, plan.price);
             })
             .catch(e => console.log('Error starting GoogleAnalytics', e));
-            this.alertCtrl.create({
-                title: 'Método de pago',
-                message: 'Eliga el método de pago para la membresía elegida',
-                buttons: [
-                    {
-                        text: 'Cancelar'
-                    },
-                    {
-                        text: 'Aceptar',
-                        handler: (data)=>{
-                            switch (data){
-                                case 'ONLINE':
-                                    this.culqiService.planData = plan;
-                                    this.navCtrl.push(FormPersonalDataPage);
-                                    break;
-                                case 'ONSITE':
-                                    this.showOnsitePaymentSelectedAlert(plan);
-                                    break;
+            if( this.establishments.currentEstablishment.statusOnsitePaymentMembership ){
+                this.alertCtrl.create({
+                    title: 'Método de pago',
+                    message: 'Eliga el método de pago para la membresía elegida',
+                    buttons: [
+                        {
+                            text: 'Cancelar'
+                        },
+                        {
+                            text: 'Aceptar',
+                            handler: (data)=>{
+                                switch (data){
+                                    case 'ONLINE':
+                                        this.culqiService.planData = plan;
+                                        this.navCtrl.push(FormPersonalDataPage);
+                                        break;
+                                    case 'ONSITE':
+                                        this.showOnsitePaymentSelectedAlert(plan);
+                                        break;
+                                }
+                                
                             }
-                            
                         }
-                    }
-                ],
-                inputs: [
-                    {
-                        type: 'radio',
-                        label: 'Online',
-                        value: 'ONLINE',
-                        checked: true,
-                        name: 'paymentMethod'
-                    },                
-                    {
-                        type: 'radio',
-                        label: 'Presencial',
-                        value: 'ONSITE',
-                        name: 'paymentMethod'
-                    }
-                ]
-            }).present();
-        // this.culqiService.planData = plan;
-        // this.navCtrl.push(FormPersonalDataPage);
+                    ],
+                    inputs: [
+                        {
+                            type: 'radio',
+                            label: 'Online',
+                            value: 'ONLINE',
+                            checked: true,
+                            name: 'paymentMethod'
+                        },                
+                        {
+                            type: 'radio',
+                            label: 'Presencial',
+                            value: 'ONSITE',
+                            name: 'paymentMethod'
+                        }
+                    ]
+                }).present();
+            }else{
+                this.culqiService.planData = plan;
+                this.navCtrl.push(FormPersonalDataPage);
+            }
     }
 
     showNextPage(product) {

@@ -52,6 +52,7 @@ export class CentersPreviewPage {
         localStorage.setItem('statusUploadPhotoProgress', establishment.statusUploadPhotoProgress);
         localStorage.setItem('statusRatingLessons', establishment.statusRatingLessons);
         localStorage.setItem('statusShareBD', establishment.shareBd);
+        localStorage.setItem('statusOnsitePaymentMembership', establishment.statusOnsitePaymentMembership);
         localStorage.setItem('orgEstablishments', establishment.orgEstablishments);
         localStorage.setItem('QR', establishment.QRApp);
         localStorage.setItem('statusLimitMembershipTest', establishment.statusLimitMembershipTest);

@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {AppService} from "./app.service";
 import {AuthService} from "./auth.service";
 import 'rxjs/add/operator/map';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Establishment } from '../core/models/establishment.model';
 
 @Injectable()
 export class EstablishmentsService {
@@ -12,6 +14,11 @@ export class EstablishmentsService {
         keyPublic : "",
         keyPrivate : "",
     };
+    private currentEstablishmentSubject = new BehaviorSubject<Establishment>( new Establishment() );
+    public currentEstablishmentRx = this.currentEstablishmentSubject.asObservable();
+    public get currentEstablishment(): Establishment{
+      return this.currentEstablishmentSubject.value;
+    }
 
     constructor(
         private appService: AppService,

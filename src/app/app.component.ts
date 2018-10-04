@@ -117,6 +117,7 @@ export class MyApp {
                         localStorage.setItem('statusUploadPhotoProgress', success.data[0].statusUploadPhotoProgress);
                         localStorage.setItem('statusRatingLessons', success.data[0].statusRatingLessons);
                         localStorage.setItem('statusShareBD', success.data[0].shareBd);
+                        localStorage.setItem('statusOnsitePaymentMembership', success.data[0].statusOnsitePaymentMembership);
                         localStorage.setItem('orgEstablishments', success.data[0].orgEstablishments);
                         localStorage.setItem('QR', success.data[0].QRApp);
                         localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
