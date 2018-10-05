@@ -93,7 +93,7 @@
       "cordova-custom-config": {},
       "cordova-plugin-ionic": {
         "APP_ID": "d0f592d5",
-        "CHANNEL_NAME": "Production",
+        "CHANNEL_NAME": "Test",
         "UPDATE_METHOD": "auto",
         "UPDATE_API": "https://api.ionicjs.com",
         "MAX_STORE": "2",

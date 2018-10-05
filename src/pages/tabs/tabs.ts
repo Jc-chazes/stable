@@ -14,6 +14,7 @@ import { AppStateService } from '../../services/app-state.service';
 import { DevicesService } from '../../services/devices.service';
 import { NavigationService } from '../../services/navigation.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Platform } from 'ionic-angular/platform/platform';
 
 @Component({
     templateUrl: 'tabs.html'
@@ -44,7 +45,8 @@ export class TabsPage {
                 private authService: AuthService,
                 private appStateService: AppStateService,
                 private devices: DevicesService,
-                private navigation: NavigationService) {
+                private navigation: NavigationService,
+                private platform: Platform) {
 
         this.appStateService.onStateChange.subscribe( state => {
           this.notificationCount = state.notifications.unreadCount == 0 ? null : state.notifications.unreadCount;
@@ -64,7 +66,11 @@ export class TabsPage {
     }
 
     ionViewDidLoad(){
-        this.devices.populate().subscribe();
+        this.platform.ready().then( () => {
+            if(this.allowNotifications){
+                this.devices.populate().subscribe();
+            }
+        });
         this.events.subscribe('gototab', () => {
             this.tabs.select(2);
         })
