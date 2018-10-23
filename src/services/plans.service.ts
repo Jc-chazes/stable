@@ -20,6 +20,7 @@ export class PlansService {
         return this.authService.get(url)
             .map( response =>{
                 let res = response.json();
+               
                 return res;
             });
     }
@@ -31,6 +32,7 @@ export class PlansService {
       return this.authService.get(urlPlans)
             .map( response =>{
                 let res = response.json();
+                console.log('planes',res)
                 return res;
             });
 

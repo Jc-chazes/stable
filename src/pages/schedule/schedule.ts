@@ -407,7 +407,7 @@ export class SchedulePage {
     this.reservesService.createReserve(lesson.id).subscribe(
       success => {
         this.loading.dismiss();
-        this.successReserve('¡HURRA!', 'Tu reserva se realizó satisfactoriamente');
+        this.successReserve('¡HURRA!', ' se realizó satisfactoriamente');
 
         this.ga
           .startTrackerWithId('UA-76827860-8')
@@ -778,7 +778,7 @@ export class SchedulePage {
     this.reservesService.createAppointment(buildServiceBody).subscribe(
       success => {
         this.loading.dismiss();
-        this.successReserve('¡HURRA!', 'Tu reserva se realizó satisfactoriamente');
+        this.successReserve('¡HURRA!', ' se realizó satisfactoriamente');
 
         this.ga
           .startTrackerWithId('UA-76827860-8')

@@ -37,7 +37,7 @@ export class ShopPage {
         private memberships: MembershipsService,
         private establishments: EstablishmentsService
     ) {
-        this.currency = localStorage.getItem('currencyCode');
+        this.currency = JSON.parse(localStorage.getItem('userEstablishments'))[0].currency
     }
 
     ionViewDidEnter(){

@@ -71,7 +71,7 @@ export class ReserveDetailPage {
 
                                     let alert = this.alertCtrl.create({
                                         title: `<img src="assets/images/success.png" class="icon-booking"> <h6 class="title-booking">`+'Reserva Eliminada'+`</h6>`,
-                                        subTitle: 'Tu reserva se eliminó con éxito',
+                                        subTitle: ' se eliminó con éxito',
                                         buttons: [{
                                             text: 'OK',
                                             handler: () => {this.navCtrl.popTo(ReservesPage)}
@@ -89,7 +89,7 @@ export class ReserveDetailPage {
                                             message = "Por favor verifica tu conexión e intentalo nuevamente.";
                                             break;
                                         case "DISCARD_LESSON_LIMIT":
-                                            message = "El límite de tiempo para cancelar tu reserva fue superado.";
+                                            message = "El límite de tiempo para cancelar  fue superado.";
                                             break;
                                         case "RESERVE_ERROR_LIMIT":
                                             var limitText = moment.duration(err.limit, "minutes").asHours();
