@@ -688,7 +688,8 @@ export class SchedulePage {
     this.personalService.getPersonal().subscribe(response => {
       const arr = [];
       for (let i of response) {
-        if (i.roleId == 4) {
+        // if (i.roleId == 4) {
+        if ((i.roleName+'').toLowerCase().includes('instructor')) {
           arr.push(i);
         }
       }
