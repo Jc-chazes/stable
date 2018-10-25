@@ -31,6 +31,7 @@ export class PlansService {
       return this.authService.get(urlPlans)
             .map( response =>{
                 let res = response.json();
+                console.log('res',res)
                 return res;
             });
 

@@ -607,7 +607,7 @@ export class SchedulePage {
 
     let dataFiltered = [];
     let dataModificada = this.dataToFilter;
-
+    
     if (this.disciplineIdSelected) {
       dataFiltered = [];
       for (let item of dataModificada) {

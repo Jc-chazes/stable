@@ -23,6 +23,7 @@ export class LessonsService {
 
     return this.authService.get(url).map(response => {
       let res = response.json();
+   
       return res;
     });
   }
@@ -62,6 +63,7 @@ export class LessonsService {
 
     return this.authService.get(url).map(response => {
       let res = response.json();
+      console.log('dateeres',res)
       return res;
     });
   }
