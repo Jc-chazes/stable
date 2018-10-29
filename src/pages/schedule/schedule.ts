@@ -689,7 +689,8 @@ export class SchedulePage {
       const arr = [];
       for (let i of response) {
         // if (i.roleId == 4) {
-        if ((i.roleName+'').toLowerCase().includes('instructor')) {
+        if ( (i.roleName+'').toLowerCase().includes('instructor')
+        || (i.roleName+'').toLowerCase().includes('entrenador') ) {
           arr.push(i);
         }
       }
