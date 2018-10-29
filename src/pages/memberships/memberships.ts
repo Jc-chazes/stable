@@ -87,6 +87,7 @@ export class MembershipsPage {
                 success =>{
                     this.loading.dismiss();
                     let data = success;
+                    console.log('success',success)
                     if(data.length > 0){
                         this.setDataMemberships(data);
                         this.thereAreMemberships = true;

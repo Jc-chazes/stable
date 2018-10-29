@@ -77,8 +77,11 @@ export class LoginPage {
                                     arrE.push(i);
                                 }
                             }
+            
+                            
                             localStorage.setItem('userEstablishments', JSON.stringify(arrE));
                             this.establishmentService.establishmentsByUser = arrE;
+
 
                             //Si el usuario solo pertenece a un establecimiento
                             if(success.data.length == 1){
