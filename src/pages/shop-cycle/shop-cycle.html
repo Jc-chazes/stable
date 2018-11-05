@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bicicleta Ciclo</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+<div class="detail-shop">
+  <div class="detail-shop__title">DETALLES DE COMPRA</div>
+  <div class="detail-shop__item">Plan  <div class="detail-shop__item__contain">{{lessonObject.disciplineName}}</div></div>
+  <div class="detail-shop__item">Precio  <div class="detail-shop__item__contain">S/. {{lessonObject.programPlanPrice}}</div></div>
+  <div class="detail-shop__item">Horario  <div class="detail-shop__item__contain">{{lessonObject.start}}-{{lessonObject.end}}</div></div>
+  <div class="detail-shop__item">Posición  <div class="detail-shop__item__contain">{{myPosition}}</div></div>
+  <div class="detail-shop__item">Sesiones <div class="detail-shop__item__contain">{{lessonObject.programPlanSessions}}</div></div>
+</div>
+
+<page-form-card-data></page-form-card-data>
+</ion-content>

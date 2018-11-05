@@ -7,33 +7,40 @@
 
 <ion-content>
     <ion-grid *ngIf="plan">
-        <ion-row>
+
             <div class="plan-card">
                 <div class="plan-name">
                     <p>{{plan.name}}</p>
                 </div>
                 <div class="plan-detail">
-                    <div class="plan-dscrip">
-                        <p>{{plan.description}}</p>
-                    </div>
-                    <p>Sesiones: {{plan.sessions}}</p>
+                  <ion-item>
+                    <ion-label>Sesiones</ion-label>
+                    <ion-select [(ngModel)]="optionSession" #C (ionChange)="onChangeSession(C.value)">
+                      <ion-option [selected]="optionSession == 0" [value]="-1">--------</ion-option>>
+                      <ion-option *ngFor="let session of sessionsCiclo"  [value]="session.lessonsIds">{{session.sessions}}</ion-option>
+                    </ion-select>
+                    </ion-item>
                     <p>Vigencia:
-                        <span *ngIf="plan.months == 1">{{plan.months}} mes </span>
-                        <span *ngIf="plan.months > 1">{{plan.months}} meses </span>
-                        <span *ngIf="plan.days == 1">{{plan.days}} día</span>
-                        <span *ngIf="plan.days > 1">{{plan.days}} días</span>
+                        <span *ngFor="let item of sessionsCiclo">
+                          <span *ngIf="item.lessonsIds== id"> {{item.months}} meses</span>
+                        </span>
+                        <span *ngIf="id == undefined"> 0 meses</span>
                     </p>
-                    <p *ngIf="plan.freezeNumber">Freeze: {{plan.freezeNumber}} días</p>
-                    <p>Precio: {{currency}} {{plan.price}}</p>
+                    <p>Precio:
+                      <span *ngFor="let item of sessionsCiclo">
+                          <span *ngIf="item.lessonsIds == id"> {{currency}} {{item.price}} </span>
+                      </span>
+                      <span *ngIf="id == undefined"> {{currency}} 0 </span>
+                    </p>
                 </div>
             </div>
-        </ion-row>
-        <ion-row>
+
+
             <div class="plan-description">
                 <div class="div-bottom">
-                    <button (tap)="showFormPersonalData()">OBTENER</button>
+                    <button (tap)="calendarCiclo()">¡INSCRIBEME!</button>
                 </div>
             </div>
-        </ion-row>
+
     </ion-grid>
 </ion-content>

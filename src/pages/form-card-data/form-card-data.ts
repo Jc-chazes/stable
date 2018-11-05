@@ -9,6 +9,8 @@ import {AuthService} from "../../services/auth.service";
 import {ValidationService} from "../../services/validation.service";
 import {ProductsService} from "../../services/products.service";
 import * as moment from "moment";
+import {AppStateService} from "../../services/app-state.service";
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
     selector: 'page-form-card-data',
@@ -29,7 +31,8 @@ export class FormCardDataPage {
         cvv : "",
     };
     submitted: boolean = false;
-
+  lessonObject :any;
+  myPosition:number;
     constructor(
         public events: Events,
         public navCtrl: NavController,
@@ -42,8 +45,12 @@ export class FormCardDataPage {
         public ga: GoogleAnalytics,
         private validationService: ValidationService,
         private authService: AuthService,
-        private productsService: ProductsService) {
+        private productsService: ProductsService,
+        private appStateService :AppStateService,
+        private navigationService : NavigationService) {
         this.currency = localStorage.getItem('currencyCode');
+      this.lessonObject = this.appStateService.currentState.lesson;
+      this.myPosition = this.appStateService.currentState.myPosition
     }
 
     ionViewDidEnter(){
@@ -56,6 +63,9 @@ export class FormCardDataPage {
             .catch(e => console.log('Error starting GoogleAnalytics', e));
     }
 
+  ionViewDidLeave(){
+    this.appStateService.setState({myPosition:0});
+  }
     ionViewWillEnter(){
         console.log('WILL-ENTER');
         this.plan = {};
@@ -88,7 +98,9 @@ export class FormCardDataPage {
             estID == 260 ||
             estID == 261 ||
             estID == 321 ||
-            estID == 233 ) {
+            estID == 233 ||
+            estID == 4) {
+
             this.usePayU = true;
         }
         else{
@@ -114,6 +126,7 @@ export class FormCardDataPage {
         }
         else{
             let estID = this.establishmentService.selectedEstablishmentId;
+            console.log('ID',estID)
             if( estID == 19 ||
                 estID == 119 ||
                 estID == 172 ||
@@ -125,7 +138,9 @@ export class FormCardDataPage {
                 estID == 260 ||
                 estID == 261 ||
                 estID == 321 ||
-                estID == 233 ){
+                estID == 233 ||
+                estID == 4){
+                console.log('card',this.card)
                 this.payWithPayU();
             }
             else{
@@ -175,8 +190,8 @@ export class FormCardDataPage {
         this.errors.cardLuhn = !this.validationService.validCreditCardLuhn(this.card.number);
         this.errors.expDate = !this.validationService.validExpDateCard(this.card.expDate);
         this.errors.typeCard = !this.validationService.validNumberAndTypeCard(this.card.number, this.payuService.requestData.card.paymentMethod);
-        this.errors.securityCode = !this.validationService.validCardCVV(this.card.cvv, this.payuService.requestData.card.paymentMethod);
-
+        this.errors.securityCode = !this.validationService.validCardCVV(this.card.cvv,'VISA');
+        // this.payuService.requestData.card.paymentMethod
         for (const err in this.errors) {
             if (this.errors[err]) {
                 return false;
@@ -191,9 +206,31 @@ export class FormCardDataPage {
         if (!this.submitted) {
             this.submitted = true;
 
+
+            this.showLoading()
+            
+            // setTimeout(() => {
+            //     this.loading.dismiss();
+            //     let alert = this.alertCtrl.create({
+            //         title: `<img src="assets/images/happy-face.png" class="icon-booking">`,
+            //         message: 'Tu Compra fue Exitosa',
+            //         buttons: [{text: 'Ok'}]
+            //     });
+            //     alert.present()
+                
+            // }, 3000);
+                
+            //      this.navigationService.navigateTo('SCHEDULE')      
+
+
+
+
+
             if(this.validateDataPayu()){
+                console.log('entro1')
                 this.showLoading();
                 let service;
+                
                 if (this.plan.name) {
                     service = this.payuService.createTransaction(this.plan, this.card);
                 } else if (this.product.title) {
@@ -321,6 +358,7 @@ export class FormCardDataPage {
         }
     }
 
+   
     saveMembershipAndPayment(){
 
         let bodyData = {

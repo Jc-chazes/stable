@@ -1,0 +1,117 @@
+<div class="roomLayout"
+     [ngClass]="{ 'roomLayout--create': mode == 'create' }">
+  <div *ngIf="mode == 'create'">
+    <div class="flex-row-layout form-group">
+      <div class="flex-25">
+        <label class="control-label">Filas</label>
+      </div>
+      <div class="flex">
+        <input class="form-control" type="number" (change)="updateRows($event.target.value)">
+      </div>
+    </div>
+    <div class="flex-row-layout form-group">
+      <div class="flex-25">
+        <label class="control-label">Columnas</label>
+      </div>
+      <div class="flex">
+        <input class="form-control" type="number" (change)="updateCols($event.target.value)">
+      </div>
+    </div>
+    <div class="flex-row-layout form-group">
+      <div class="flex-25">
+        <label class="control-label">Aforo</label>
+      </div>
+      <div class="flex">
+        <input class="form-control" type="number" (change)="roomLayout.capacity = $event.target.value || 0">
+      </div>
+    </div>
+    <div class="flex-row-layout form-group ai-center">
+      <div class="flex-25">
+        <label class="control-label">Agregar</label>
+      </div>
+      <div class="flex">
+        <select class="form-control" #positionTypeSelect (change)="appRef.tick()">
+          <option value="0">---</option>
+          <option value="1">Instructor</option>
+          <option value="2">Posición</option>
+        </select>
+      </div>
+      <div class="flex-auto">
+        <button class="btn btn-default" (click)="onAddPosition()">{{ adding ? 'Cancelar' : 'Agregar' }}</button>
+      </div>
+      <div class="flex-auto">
+        <button class="btn btn-warn" (click)="onRemovePosition()">{{ removing ? 'Cancelar' : 'Remover' }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="flex-row-layout roomLayout__map">
+    <div class="flex-col-layout flex no-padding">
+      <div class="flex-row-layout jc-center roomLayout__row" *ngFor="let row of rowsArray; let y = index;">
+        <div *ngFor="let col of colsArray; let x = index;" class="roomLayout__position__wrapper flex
+        no-padding">
+          <ng-container [ngTemplateOutlet]="roomPosition"
+                        [ngTemplateOutletContext]="{ position: getPosition(x,y), index: i, x: x, y: y }"></ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col-layout flex-gap text-center flex-auto jc-center roomPosition__capacity"
+         *ngIf="roomLayout" >
+      <h3><span class="text-thin">Aforo</span></h3>
+      <h1><b>{{ roomLayout.capacity || 0 }}</b></h1>
+      <h3><span class="text-thin">puestos</span></h3>
+    </div>
+  </div>
+  <div *ngIf=" mode == 'reserve' && !!roomLayoutFG">
+    <div class="flex-row-layout" [formGroup]="roomLayoutFG">
+      <div class="flex">
+        <div class="flex-row-layout ai-center">
+          <div class="mr-10">
+            <span><b>Posición</b></span>
+          </div>
+          <select formControlName="position">
+            <option *ngFor="let position of availablePositionList" [ngValue]="position">
+              {{ position.number }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="flex-auto">
+        <div class="spacer-h-30"></div>
+      </div>
+      <div class="flex">
+        <div class="flex-row-layout jc-center ai-center circle-paint">
+          <div class="circle-20 positionSiteBkColor mr-10"></div>
+          <span>Ocupado</span>
+          <div class="spacer-h-20"></div>
+          <div class="circle-20 positionExistsColor mr-10"></div>
+          <span>Libre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="mode == 'create'">
+    <br>
+    <textarea class="fill-width" #roomLayoutJSON rows="6"></textarea>
+    <br>
+    <button class="btn btn-info" (click)="exportLayout()">Exportar Layout</button>
+  </div>
+</div>
+
+<ng-template #roomPosition let-position="position" let-i="index"
+             let-x="x" let-y="y">
+  <div class="roomLayout__position flex-row-layout ai-center jc-center"
+       (click)="onRoomPositionClick( position || { x: x, y: y})"
+       [ngClass]=" !position ?
+    {
+      'roomLayout__position--adding': adding,
+      'roomLayout__position--adding-teacher': adding && addingPositionType == '1'
+      ,'roomLayout__position--adding-site': adding && addingPositionType == '2'
+    }
+    :
+    position.htmlClass ">
+    <span class="roomLayout__position__number" *ngIf=" position  ">
+      <span *ngIf=" mode  != 'create' ">{{ position? position.number: '' }}</span>
+      <input type="number" *ngIf=" mode == 'create' " [(ngModel)]="position.number">
+    </span>
+  </div>
+</ng-template>

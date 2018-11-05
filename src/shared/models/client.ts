@@ -1,0 +1,41 @@
+import { BaseModel } from "./base/base.model";
+
+export class Client extends BaseModel<Client>{
+    id: number;
+    establishmentId: any;
+    roleId: number;
+    typeUser: string;
+    address: string;
+    code: string;
+    nroUser: string;
+    dni: string;
+    name: string;
+    lastName: string;
+    email: string;
+    photo: string;
+    categoryClientId: string;
+    categoryClientName: string;
+    categoryClientColor: string;
+    emergencyPhone: string;
+    emergencyName: string;
+    status: string;
+    districtId: any;
+    birthDate: string;
+    gender: string;
+    roleName: string;
+    phone: string;
+    celPhone: string;
+    alert: string;
+    insDate: string;
+    insUser: string;
+    updDate: string;
+    updUser: string;
+    disDate: string;
+    disUser: string;
+    insUserName: string;
+  fingerprint: any;
+    updUserName: string;
+    additionals: any;
+    establishmentName: string;
+    inFreeze: number;
+}

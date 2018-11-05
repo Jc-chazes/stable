@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {FormCardDataPage} from "../form-card-data/form-card-data";
-import {SchedulePage} from "../schedule/schedule";
 import {UserService} from "../../services/user.service";
 import {CulqiService} from "../../services/culqi.service";
 import {EstablishmentsService} from "../../services/establishments.service";
@@ -10,16 +9,12 @@ import {GoogleAnalytics} from "@ionic-native/google-analytics";
 import {PlansService} from "../../services/plans.service";
 import {AuthService} from "../../services/auth.service";
 import {ValidationService} from "../../services/validation.service";
-import {NavigationService} from '../../services/navigation.service';
-import {ShopPage} from '../shop/shop';
 
 @Component({
     selector: 'page-form-personal-data',
     templateUrl: 'form-personal-data.html'
 })
 export class FormPersonalDataPage {
-
-
 
     user: any = {
         name : "",
@@ -53,16 +48,7 @@ export class FormPersonalDataPage {
         public ga: GoogleAnalytics,
         private plansService: PlansService,
         private authService: AuthService,
-        private validationService: ValidationService,
-        private NavigationService : NavigationService) {}
-
-    
-
-    
-    public goToClass(){
-        this.NavigationService.navigateTo('SCHEDULE');
-        this.navCtrl.push(ShopPage)
-    }    
+        private validationService: ValidationService) {}
 
     ionViewDidEnter(){
         this.ga.startTrackerWithId('UA-76827860-8')
@@ -193,7 +179,7 @@ export class FormPersonalDataPage {
 
         return true;
     }
-   
+
     goToFormCardDataPayu(){
         if(!this.validateDataPayu()){
             let alert = this.alertCtrl.create({

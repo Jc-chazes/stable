@@ -1,0 +1,45 @@
+.invisible{
+    visibility: hidden;
+}
+
+.overflow-y{
+    overflow-y: auto;
+}
+
+.overflow{
+    overflow: auto;
+}
+
+.hide{
+    display: none !important;
+}
+
+.hide-xs{    
+    @media screen and (max-width: $breakpoint-sm){
+        display: none !important;
+    }
+}
+
+.hide-sm{    
+    @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-md){
+        display: none !important;
+    }
+}
+
+.hide-md{    
+    @media screen and (min-width: $breakpoint-md) and (max-width: $breakpoint-lg){
+        display: none !important;
+    }
+}
+
+.hide-lg{    
+    @media screen and (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl){
+        display: none !important;
+    }
+}
+
+.hide-xl{    
+    @media screen and (min-width: $breakpoint-xl){
+        display: none !important;
+    }
+}

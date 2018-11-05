@@ -1,0 +1,184 @@
+$justify-content-values: (
+    flex-start, flex-end, center, space-between, space-around
+);
+
+$align-items-values: (
+    stretch, center, flex-start, flex-end, baseline
+);
+
+$flex-points: (
+    '1', '5' , '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', 
+    '60', '65', '70', '75', '80', '85', '90', '95', '100', '33', '66'  
+);
+
+@each $ais in $align-items-values{
+    .ais-#{$ais}{
+        @include alignSelf($ais);
+    }
+}
+
+@mixin flexPad($orientation: horizontal, $space: 15px){
+    @if ( $orientation == vertical ){
+        // padding-top: $space;
+        // padding-bottom: $space;
+        padding: $space 0;
+    }@else{
+        // padding-right: $space;
+        // padding-left: $space;
+        padding: 0 $space;
+    }
+}
+
+.flex-row-layout, .flex-col-layout{
+    @include layoutFlex();
+    @include justifyContent(start);
+    // @include alignItems(start);
+    @include alignItems(stretch);
+    >.flex{
+        @include flexFlex();
+    }
+    >.flex-auto{
+        @include flexFlex(0 0 auto);
+    }
+    &.flex-wrap{
+        @include flexWrap();
+    }
+    @each $jc in $justify-content-values{
+        &.jc-#{$jc}{
+            @include justifyContent($jc);
+        }
+    }
+    @each $ai in $align-items-values{
+        &.ai-#{$ai}{
+            @include alignItems($ai);
+        }
+    }
+    &.flex-gap{
+        @each $point in $flex-points{
+            .flex-#{$point}{
+                &:not(:first-child){
+                    flex: 0 0 calc(#{$point+'%'} - 10px);
+                }
+                &:first-child{
+                    flex: 0 0 #{$point+'%'};
+                }
+            }
+        }
+    }
+}
+
+.flex-row-layout{
+    @include directionFlex(row);
+    @each $point in $flex-points{
+        >.flex-#{$point}{
+            flex: 0 0 #{$point+'%'};
+            @include flexPad();
+        }
+        >.flex, >.flex-auto{
+            @include flexPad();
+        }
+    }
+    &.flex-gap{
+        &>*:not(:first-child){
+            margin-left: 10px;
+        }
+    }
+}
+
+.flex-col-layout{
+    @include directionFlex(column);
+    @each $point in $flex-points{
+        >.flex-#{$point}{
+            flex: 0 0 #{$point+'%'};
+            @include flexPad(vertical);
+        }
+        >.flex, >.flex-auto{
+            @include flexPad(vertical);
+        }
+    }
+    &.flex-gap{
+        &>*:not(:first-child){
+            margin-top: 10px;
+        }
+    }
+}
+
+// .flex-xs-row-layout{
+//     @include device-xs{
+//         @include directionFlex(row);
+//     }
+// }
+
+// @mixin flex-responsive-configuration($direction, $breakpoint, $flex-point){
+//     @include directionFlex( if($direction == row, row, column) );
+//     .flex-#{$breakpoint}{
+//         @include flexFlex();
+//     }
+//     .flex-#{$breakpoint}-auto{
+//         @include flexFlex(0 0 auto);
+//     }
+//     .flex-#{$breakpoint}-#{$flex-point}{
+//         @if $direction == row{
+//             width: #{$flex-point+'%'};
+//         }@else{
+//             height: #{$flex-point+'%'};
+//         }
+//     }
+//     &.flex-gap{
+//         &>*:not(:first-child){
+//             margin: 0px;
+//             @if $direction == row{
+//                 margin-left: 10px;
+//             }@else{
+//                 margin-top: 10px;
+//             }
+//         }
+//         .flex-#{$breakpoint}-#{$flex-point}{
+//             &:not(:first-child){
+//                 width: calc(#{$flex-point+'%'} - 10px);
+//             }
+//             &:first-child{
+//                 width: #{$flex-point+'%'};
+//             }
+//         }
+//     }
+// }
+
+// @each $breakpoint in ( xs, sm, md, lg, xl ){
+//     @each $direction in ( row, col ){
+//         @each $point in ($flex-points){
+//             .flex-#{$breakpoint}-#{$direction}-layout{
+//                 @include layoutFlex();
+//                 @if $breakpoint == xs{
+//                     @include device-xs{
+//                         @include flex-responsive-configuration($direction, $breakpoint, $point);    
+//                     }
+//                 }
+//                 @if $breakpoint == sm{
+//                     @include device-sm{
+//                         @include flex-responsive-configuration($direction, $breakpoint, $point);
+//                     }
+//                 }
+//                 @if $breakpoint == md{
+//                     @include device-md{
+//                         @include flex-responsive-configuration($direction, $breakpoint, $point);    
+//                     }
+//                 }
+//                 @if $breakpoint == lg{
+//                     @include device-lg{
+//                         @include flex-responsive-configuration($direction, $breakpoint, $point);    
+//                     }
+//                 }
+//                 @if $breakpoint == xl{
+//                     @include device-xl{
+//                         @include flex-responsive-configuration($direction, $breakpoint, $point);    
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+.flex-no-pad{
+    padding: 0;
+}

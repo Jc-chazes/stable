@@ -1,0 +1,23 @@
+page-shop-cycle {
+  .detail-shop{
+    margin-top: 27%;
+    margin-left: 8%;
+  }
+  .detail-shop__title{
+    font-family: OpenSans-Bold;
+    font-size: 13px;
+    color: #818181;
+    margin-bottom: 9px;
+  }
+  .detail-shop__item{
+    font-family: OpenSans-Regular;
+    font-size: 12px;
+    margin-bottom: 5px;
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .detail-shop__item__contain{
+    width: 127px;
+  }
+}

@@ -1,0 +1,41 @@
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+// .text-primary{
+//     color: $color-primary;
+// }
+
+// .text-accent{
+//     color: $color-accent;
+// }
+
+// .text-warn{
+//     color: $color-warn;
+// }
+
+.text-bold{
+    font-weight: bold;
+}
+
+.text-muted{
+    color: rgba(0,0,0,.2);
+}
+
+.text-thin{
+    font-weight: 100;
+}

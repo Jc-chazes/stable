@@ -1,0 +1,4 @@
+.#{$namespace}-box{
+    padding: 10px;
+    @include materialShadow(1);
+}

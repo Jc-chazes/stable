@@ -27,7 +27,12 @@ export class LessonsService {
       return res;
     });
   }
-
+  getLessonCycle(date:string,id:number){
+    let url = this.appService.gateway + '/api/lessons/lessonCycle/'+id+ '?dateLesson=' + date ;
+    return this.authService.get(url).map(response=>{
+      return response.json();
+    })
+  }
   getLessonsReserved(date: string) {
     let userId = this.authService.userId;
     let dateFormat = moment(date).format('YYYY-MM-DD');
@@ -63,7 +68,6 @@ export class LessonsService {
 
     return this.authService.get(url).map(response => {
       let res = response.json();
-      console.log('dateeres',res)
       return res;
     });
   }

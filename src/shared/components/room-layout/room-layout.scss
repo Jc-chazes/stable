@@ -1,0 +1,155 @@
+page-room-layout {
+  $positionSiteColor: #5bc8d1;
+  $positionTeacherColor: #000000;
+  $positionExistsColor: #eeeeee;
+
+  %positionExists {
+    background-color: $positionExistsColor;
+    border-radius:50%;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),
+    0 1px 1px 0 rgba(0,0,0,.14),
+    0 1px 3px 0 rgba(0,0,0,.12);
+  }
+
+  %positionTypeSite{
+    @extend %positionExists;
+    background-color: $positionSiteColor;
+    .roomLayout__position__number{
+      display: none;
+    }
+  }
+
+  %positionTypeTeacher{
+    @extend %positionExists;
+    width: 180%;
+    height: 180%;
+    left: 10%;
+    top: 10%;
+    background-color: $positionTeacherColor !important;
+    z-index: 2;
+    &:not(.roomLayout__position--adding):hover{
+      transform:scale(1.1);
+    }
+  }
+
+  %positionTypeSite{
+    @extend %positionExists;
+    background-color: $positionSiteColor;
+    .roomLayout__position__number{
+      display: none;
+    }
+  }
+
+  .positionSiteBkColor{
+    background-color: $positionSiteColor;
+    box-shadow:0 2px 1px -1px rgba(0,0,0,.2),
+    0 1px 1px 0 rgba(0,0,0,.14),
+    0 1px 3px 0 rgba(0,0,0,.12);
+  }
+
+  .positionExistsColor{
+    background-color: $positionExistsColor;
+    box-shadow:0 2px 1px -1px rgba(0,0,0,.2),
+    0 1px 1px 0 rgba(0,0,0,.14),
+    0 1px 3px 0 rgba(0,0,0,.12);
+  }
+
+  .roomLayout{
+    margin: 30px 0;
+    &__position{
+      width: 75%;
+      height: 75%;
+      position: absolute;
+      left: 15%;
+      top: 15%;
+      cursor: pointer;
+      @include transition2(all .2s linear);
+      &:not(.roomLayout__position--adding):hover{
+        transform : scale(1.25);
+      }
+      &__number{
+        color: gray;
+        font-size: 75%;
+        input {
+          width: 25px;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+          }
+        }
+      }
+      &__wrapper{
+        max-width: 30px;
+        position: relative;
+        &::after{
+          content: "";
+          display: block;
+          padding-bottom: 100%;
+        }
+        @media screen and (max-width: 320px){
+          max-width: 50px;
+        }
+      }
+      &.exists{
+        @extend %positionExists;
+        // background-color: $positionExistsColor;
+        // @include borderRadius(50%);
+        // @include boxShadow((0 2px 1px -1px rgba(0,0,0,.2),
+        //     0 1px 1px 0 rgba(0,0,0,.14),
+        //     0 1px 3px 0 rgba(0,0,0,.12)));
+      }
+      &.occupied{
+        @extend %positionTypeSite;
+        // background-color: $positionSiteColor;
+        // .roomLayout__position__number{
+        //     display: none;
+        // }
+      }
+      &.teacher{
+        @extend %positionTypeTeacher;
+        // width: 200%;
+        // height: 200%;
+        // left: 0;
+        // top: 0;
+        // background-color: $positionTeacherColor;
+        // z-index: 2;
+        // &:hover{
+        //     @include transform(scale(1.1));
+        // }
+      }
+      &--adding-site{
+        &:hover{
+          @extend %positionExists;
+          background-color: $positionSiteColor;
+        }
+      }
+      &--adding-teacher{
+        &:hover{
+          @extend %positionTypeTeacher;
+        }
+      }
+    }
+    &--create{
+      .roomLayout__map{
+        padding: 15px !important;
+        background-size: 115px;
+      }
+      .roomLayout__position__wrapper{
+        $box-shadow-width: 1px;
+        $box-shadow-color: blue;
+        @include boxShadow( ($box-shadow-width 0 0 0 $box-shadow-color,
+        0 $box-shadow-width 0 0 $box-shadow-color,
+        $box-shadow-width $box-shadow-width 0 0 $box-shadow-color,   /* Just to fix the corner */
+        $box-shadow-width 0 0 0 $box-shadow-color inset,
+        0 $box-shadow-width 0 0 $box-shadow-color inset) );
+      }
+      .roomLayout__position{
+        &.exists{
+          background-color: $positionSiteColor;
+        }
+      }
+    }
+  }
+}

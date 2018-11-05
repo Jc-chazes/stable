@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bicicleta Ciclo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <!--<div class="icon-title">-->
+    <!--<ion-icon ios="ios-walk" md="md-walk" ></ion-icon>-->
+    <!--<div class="icon-title__text">Posición : </div>-->
+    <!--<div class="icon-title__position">{{myPosition}}</div>-->
+  <!--</div>-->
+  <page-room-layout [roomLayout]="roomLayout" *ngIf="roomLayout" mode="reserve" (positionSelect)="positions($event)" ></page-room-layout>
+
+
+    <div *ngIf="!usePayU">
+      <p class="text-subtitle">DATOS SOBRE TI</p>
+      <form (submit)="showFormCardData()">
+
+        <div class="un-input">
+          <label>Correo</label>
+          <div class="div-input">
+            <input type="text" name="email" placeholder="Correo Electrónico" [(ngModel)]="user.email">
+          </div>
+        </div>
+        <div class="un-input">
+          <label>Celular</label>
+          <div class="div-input">
+            <input type="text" name="numero" placeholder="Número de celular" [(ngModel)]="user.phone">
+          </div>
+        </div>
+        <div class="un-input">
+          <label>Nro. Documento</label>
+          <div class="div-input">
+            <input type="text" name="documento" placeholder="N° de documento" [(ngModel)]="user.dni">
+          </div>
+        </div>
+        <div class="un-input">
+          <label style="width: 214px">Fecha de Nacimiento</label>
+          <ion-item>
+            <ion-datetime class="date" displayFormat="DD/MM/YYYY" [(ngModel)]="user.date" name="born" placeholder="Fecha de nacimiento"></ion-datetime>
+          </ion-item>
+        </div>
+        <div class="div-boton">
+          <button type="submit">CONTINUAR</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="usePayU">
+      <form (submit)="goToFormCardDataPayu()">
+        <div class="dos-inputs">
+          <div class="input">
+            <input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="userWithPayU.name">
+          </div>
+          <div class="input">
+            <input type="text" name="apellido" placeholder="Apellido" [(ngModel)]="userWithPayU.lastName">
+          </div>
+        </div>
+        <div class="un-input">
+          <div class="div-input">
+            <input type="text" name="email" placeholder="Correo Electrónico" [(ngModel)]="userWithPayU.email">
+          </div>
+        </div>
+        <div class="un-input">
+          <div class="div-input">
+            <input type="text" name="numero" placeholder="Celular" [(ngModel)]="userWithPayU.celPhone">
+          </div>
+        </div>
+        <div class="un-input">
+          <div class="div-input">
+            <input type="text" name="dni" placeholder="DNI, RUT o CURP" [(ngModel)]="userWithPayU.dni">
+          </div>
+        </div>
+        <div class="un-input" *ngIf="userFromMexico">
+          <div class="div-input">
+            <input type="text" name="nacimiento" placeholder="1997-08-25 (Fecha de nacimiento)" [(ngModel)]="userWithPayU.birthdate">
+          </div>
+        </div>
+        <div class="un-input">
+          <select name="type_card" id="type_card" class="select-typecard" [(ngModel)]="choosedCard">
+            <option value="">Selecciona tu tarjeta</option>
+            <option value="VISA">Tarjeta de Crédito - Visa</option>
+            <option value="MASTERCARD">Tarjeta de Crédito - Mastercard</option>
+            <option value="DINERS" *ngIf=!userFromMexico>Tarjeta de Crédito - Diners Club</option>
+            <option value="AMEX">Tarjeta de Crédito - American Express</option>
+          </select>
+        </div>
+        <div class="div-boton">
+          <button type="submit">CONTINUAR</button>
+        </div>
+      </form>
+    </div>
+
+</ion-content>

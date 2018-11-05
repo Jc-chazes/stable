@@ -1,0 +1,29 @@
+@mixin borderRadius($border-radius){
+    -webkit-border-radius: $border-radius !important;
+    -moz-border-radius: $border-radius !important;
+    border-radius: $border-radius !important;
+}
+
+@mixin borderRadiusTopLeft($border-radius){
+    -webkit-border-top-left-radius: $border-radius !important;
+    -moz-border-top-left-radius: $border-radius !important;
+    border-top-left-radius: $border-radius !important;
+}
+
+@mixin borderRadiusTopRight($border-radius){
+    -webkit-border-top-right-radius: $border-radius !important;
+    -moz-border-top-right-radius: $border-radius !important;
+    border-top-right-radius: $border-radius !important;
+}
+
+@mixin borderRadiusBottomLeft($border-radius){
+    -webkit-border-bottom-left-radius: $border-radius !important;
+    -moz-border-bottom-left--radius: $border-radius !important;
+    border-bottom-left-radius: $border-radius !important;
+}
+
+@mixin borderRadiusBottomRight($border-radius){
+    -webkit-border-bottom-right-radius: $border-radius !important;
+    -moz-border-bottom-right-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+}

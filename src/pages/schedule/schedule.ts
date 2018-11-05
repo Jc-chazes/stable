@@ -13,6 +13,8 @@ import { EstablishmentsService } from '../../services/establishments.service';
 import * as moment from 'moment';
 import { ShopPage } from '../shop/shop';
 import { App } from 'ionic-angular';
+import {CyclePage} from "../cycle/cycle";
+import {AppStateService} from "../../services/app-state.service";
 
 @Component({
   selector: 'page-schedule',
@@ -22,7 +24,6 @@ export class SchedulePage {
   @ViewChild(Content) content: Content;
   loading: Loading;
   statusWaitingList = false;
-
   today = new Date();
   numday = this.today.getDate();
   nummonth = this.today.getMonth();
@@ -67,6 +68,7 @@ export class SchedulePage {
   availableSchedule: any = [];
   shareBD: boolean ;
   orgEstablishments;
+  establishmentState :number = 1  ;
 
   constructor(
     public navCtrl: NavController,
@@ -80,12 +82,14 @@ export class SchedulePage {
     private establishmentsService: EstablishmentsService,
     public ga: GoogleAnalytics,
     private authService: AuthService,
-    private app: App
+    private app: App,
+    public appStateService:AppStateService
   ) {
     this.getListServices();
   }
 
   ionViewDidEnter() {
+
     this.ga
       .startTrackerWithId('UA-76827860-8')
       .then(() => {
@@ -165,13 +169,44 @@ export class SchedulePage {
 
   renderLessons(date) {
     let dateFormat = moment(date).format('YYYY-MM-DD');
-
-    if (this.segment == 'lessons') {
+    // if (this.cycle === 1) {
+    //   console.log('entroooooooooooooooooo')
+    //   this.lessonsService.getLessonCycle(dateFormat, 41106).subscribe(data => {
+    //
+    //       if (data.length > 0) {
+    //         this.setResponseData(data);
+    //       } else {
+    //         this.thereAreLessons = false;
+    //       }
+    //       this.loading.dismiss();
+    //     },
+    //     error => {
+    //       this.loading.dismiss();
+    //       this.thereAreLessons = false;
+    //
+    //       let alert = this.alertCtrl.create({
+    //         title: '¡Ups!',
+    //         subTitle: 'Hubo un problema de conexión',
+    //         buttons: ['OK']
+    //       });
+    //       alert.present();
+    //
+    //     })
+    // }
+   if (this.segment == 'lessons' ){
       this.showLoading();
       this.lessonsService.getLessonsByDate(dateFormat, this.establishmentId).subscribe(
         data => {
           if (data.length > 0) {
-            this.setResponseData(data);
+            let k = this.appStateService.currentState.lessonId;
+            let filter = data.filter(j => j.lessonId === parseInt(k));
+            let cycle = this.appStateService.currentState.cycle;
+            if (cycle){
+              this.setResponseData(filter);
+            }else{
+              this.setResponseData(data);
+            }
+
           } else {
             this.thereAreLessons = false;
           }
@@ -194,6 +229,7 @@ export class SchedulePage {
         this.showLoading();
         this.lessonsService.getShowtimesAvailables(dateFormat, this.service.id).subscribe(
           success => {
+            console.log('jooletee')
             this.setResponseData(success);
             this.loading.dismiss();
           },
@@ -236,7 +272,10 @@ export class SchedulePage {
     }
   }
 
+
+
   setResponseData(data) {
+
     let temp = [];
 
     //Validación para mostrar las clases a partir de esta hora en adelante
@@ -288,6 +327,7 @@ export class SchedulePage {
         });
 
         this.dataToFilter = lessonsFiltered;
+        console.log('dataToFilter',this.dataToFilter);
         this.aplyFilter();
       } else {
         // armar codigo para los servicios
@@ -299,6 +339,10 @@ export class SchedulePage {
   }
 
   /*VIEW WILL ENTER - VIEW WILL LEAVE*/
+
+  ionViewDidLeave(){
+    this.appStateService.setState({cycle:0});
+  }
 
   ionViewWillEnter() {
     this.establishmentIdSelected = localStorage.getItem('establishmentSelected');
@@ -364,7 +408,26 @@ export class SchedulePage {
     }
     alert.present();
   }
-
+  buyCycle(lesson){
+    let alert = this.alertCtrl.create({
+      title: `<img src="assets/images/booking.png" class="icon-booking">
+                      <p class="title-booking">
+                      ¿QUIERES RESERVAR UN CUPO?
+                      </p>`,
+      message: lesson.disciplineName + ' ' +'de '+ ' '+lesson.start + '-' + lesson.end,
+      buttons: [
+        {
+          text: 'CONFIRMAR',
+          handler: () => {
+            console.log('jei',lesson)
+            this.appStateService.setState({ lesson: lesson } );
+            this.navCtrl.push(CyclePage)
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   showMultipleReserveAlert(lesson) {
     let numberDay = moment(lesson.date, 'DD/MM/YYYY').day();
     let arrDays = ['domingos', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sábados'];
@@ -646,7 +709,9 @@ export class SchedulePage {
           dataModificada[l]['showEsperar'] = waitingList[w].lessonRecordId == dataModificada[l].id;
         }
       }
+
       this.lessons = Object.assign([], dataModificada);
+      console.log('lessonss',this.lessons)
       this.thereAreLessons = this.lessons.length > 0;
     });
   }

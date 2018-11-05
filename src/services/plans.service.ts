@@ -31,10 +31,19 @@ export class PlansService {
       return this.authService.get(urlPlans)
             .map( response =>{
                 let res = response.json();
-                console.log('res',res)
+                console.log('restt',res)
                 return res;
             });
 
+    }
+
+    getSessionsCiclo(id){
+      const urlPlans = `${this.appService.gateway}/api/plans/${id}/sessions-packages/`;
+      return this.authService.get(urlPlans)
+        .map( response =>{
+          let res = response.json();
+          return res;
+        });
     }
 
 }

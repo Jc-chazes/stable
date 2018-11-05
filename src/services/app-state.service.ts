@@ -7,7 +7,12 @@ export class AppStateService{
   initialState: any = {
     notifications: {
       unreadCount: 0
-    }
+    },
+    lesson:{},
+    lessonId:0,
+    cycle:0,
+    myPosition:0
+
   };
 
   private onStateChangeSubject = new BehaviorSubject<any>(this.initialState);

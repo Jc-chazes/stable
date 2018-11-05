@@ -1,0 +1,8 @@
+@for $i from 1 through 20{
+    .spacer-#{$i*5}{
+        height: #{$i*5}px;
+    }
+    .spacer-h-#{$i*5}{
+        width: #{$i*5}px;
+    }
+}

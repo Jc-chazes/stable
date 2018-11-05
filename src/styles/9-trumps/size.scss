@@ -1,0 +1,48 @@
+.no-padding {
+    padding: 0 !important;
+}
+
+.padding {
+    padding: 30px;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.padding-y {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.padding-10-y {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.fill-parent{
+    height: 100%;
+    width: 100%;
+}
+
+.fill-height{
+    height: 100%;
+}
+
+.fill-width{
+    width: 100%;
+}
+
+.scrollable-x{
+    overflow-x: auto; 
+    overflow-y: hidden;
+}
+
+.scrollable-y{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scrollable{
+    overflow: auto;
+}

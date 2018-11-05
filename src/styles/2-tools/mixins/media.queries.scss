@@ -1,0 +1,53 @@
+$breakpoint-xs: 320px;
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin device-xs {
+    // @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (max-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@mixin device-sm {
+    @media screen and (min-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+/* Small Devices, Tablets */
+@mixin device-md {
+    @media screen and (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+/* Medium Devices, Desktops */
+@mixin device-lg {
+    @media screen and (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@mixin device-xl {
+    @media screen and (min-width: $breakpoint-xl) {
+        @content;
+    }
+}
+
+// custom breakpoints
+@mixin device-specific-point($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+// custom heigth
+@mixin responsive-height($heigth) {
+    @media screen and (max-height: $heigth) {
+        @content;
+    }
+}

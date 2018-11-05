@@ -41,6 +41,7 @@ import { SettingsPage } from "../pages/settings/settings";
 import { PasswordPage } from "../pages/password/password";
 import { AddProgressPage } from "../pages/add-progress/add-progress";
 import { QrCodePage } from "../pages/qr-code/qr-code";
+import {RoomLayoutComponent} from '../shared/components/room-layout/room-layout';
 
 /*Services*/
 import { AppService } from "../services/app.service";
@@ -65,6 +66,7 @@ import { EstablishmentsService } from "../services/establishments.service";
 import { NotificationsService } from "../services/notifications.service";
 import { MeasurementsService } from "../services/measurements.service";
 import { ValidationService } from '../services/validation.service';
+import {RoomsLayoutsService} from '../services/rooms-layouts.service';
 
 /*Tools*/
 import { HttpModule } from '@angular/http';
@@ -87,10 +89,20 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { DevicesService } from '../services/devices.service';
 import { NavigationService } from '../services/navigation.service';
+import {CyclePage} from "../pages/cycle/cycle";
+import {JwtUtil} from "../shared/utils/jwt.util";
+import {ApiUtil} from "../shared/utils/api.util";
+import {StorageUtil} from "../shared/utils/storage.util";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {ShopCyclePage} from "../pages/shop-cycle/shop-cycle";
+
 
 @NgModule({
     declarations: [
+      ShopCyclePage,
         MyApp,
+      RoomLayoutComponent,
+      CyclePage,
         LoginPage,
         OnboardingPage,
         CentersPreviewPage,
@@ -127,6 +139,7 @@ import { NavigationService } from '../services/navigation.service';
         TabsPage
     ],
     imports: [
+      HttpClientModule,
         BrowserModule,
         HttpModule,
         ChartsModule,
@@ -136,8 +149,10 @@ import { NavigationService } from '../services/navigation.service';
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
+      ShopCyclePage,
         LoginPage,
-        OnboardingPage,
+      CyclePage,
+      OnboardingPage,
         CentersPreviewPage,
         SchedulePage,
         ShopPage,
@@ -172,6 +187,11 @@ import { NavigationService } from '../services/navigation.service';
         TabsPage
     ],
     providers: [
+
+
+      JwtUtil,
+      ApiUtil,
+      StorageUtil,
         StatusBar,
         SplashScreen,
         Camera,
@@ -206,7 +226,8 @@ import { NavigationService } from '../services/navigation.service';
         DevicesService,
         Firebase,
         Device,
-        NavigationService
+        NavigationService,
+      RoomsLayoutsService
     ]
 })
 export class AppModule {
