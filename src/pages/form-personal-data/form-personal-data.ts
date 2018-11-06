@@ -65,30 +65,11 @@ export class FormPersonalDataPage {
     }
 
     validateEstablishment(){
-        let estID = this.establishmentsService.selectedEstablishmentId;
 
-        if( estID == 19 ||
-            estID == 119 ||
-            estID == 172 ||
-            estID == 207 ||
-            estID == 179 ||
-            estID == 171 ||
-            estID == 183 ||
-            estID == 84 ||
-            estID == 260 ||
-            estID == 261 ||
-            estID == 321 ||
-            estID == 233 ){
+        let marketPlatform = localStorage.getItem('marketPlatform');
+        if( marketPlatform == '0' ){
             this.usePayU = true;
-            this.userFromMexico = ( estID == 19 ||
-                                    estID == 172 ||
-                                    estID == 171 ||
-                                    estID == 183 ||
-                                    estID == 84 ||
-                                    estID == 260 ||
-                                    estID == 261 ||
-                                    estID == 321 ||
-                                    estID == 233);
+            this.userFromMexico = localStorage.getItem('countryCode') === 'MX'? true : false ;
             this.showPayUForm();
         }
         else{

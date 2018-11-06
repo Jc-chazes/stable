@@ -74,24 +74,12 @@ export class FormCardDataPage {
     }
 
     validateEstablishment(){
-        let estID = this.establishmentService.selectedEstablishmentId;
 
-        if( estID == 19 ||
-            estID == 119 ||
-            estID == 119 ||
-            estID == 172 ||
-            estID == 207 ||
-            estID == 179 ||
-            estID == 171 ||
-            estID == 183 ||
-            estID == 84 ||
-            estID == 260 ||
-            estID == 261 ||
-            estID == 321 ||
-            estID == 233 ) {
+        let marketPlatform = localStorage.getItem('marketPlatform');
+        if(marketPlatform == '0') {
             this.usePayU = true;
         }
-        else{
+        else if(marketPlatform == '1'){
             this.usePayU = false;
             this.establishmentService.getEstablishmentById()
                 .subscribe(
@@ -113,25 +101,16 @@ export class FormCardDataPage {
             alert.present();
         }
         else{
-            let estID = this.establishmentService.selectedEstablishmentId;
-            if( estID == 19 ||
-                estID == 119 ||
-                estID == 172 ||
-                estID == 207 ||
-                estID == 179 ||
-                estID == 171 ||
-                estID == 183 ||
-                estID == 84 ||
-                estID == 260 ||
-                estID == 261 ||
-                estID == 321 ||
-                estID == 233 ){
-                this.payWithPayU();
+
+            let marketPlatform = localStorage.getItem('marketPlatform');
+
+            if(marketPlatform === '0'){
+              this.payWithPayU();
+            } else if(marketPlatform === '1'){
+              this.culqiService.cardData = this.card;
+              this.payWithCulqi();
             }
-            else{
-                this.culqiService.cardData = this.card;
-                this.payWithCulqi();
-            }
+
         }
 
     }

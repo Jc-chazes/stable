@@ -147,6 +147,8 @@ export class SearcherPage {
                                                         localStorage.setItem('QR', success.data[0].QRApp);
                                                         localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
                                                         localStorage.setItem('statusNotificationMobile', establishment.statusNotificationMobile);
+                                                        localStorage.setItem('marketPlatform', establishment.platform);
+                                                        localStorage.setItem('countryCode', establishment.countryCode);
                                                         if(establishment.statusNotificationMobile == 'Y'){
                                                           this.notificationsService.getUnreadNotifications()
                                                           .subscribe(
