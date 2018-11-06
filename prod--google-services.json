@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "759190042025",
+    "firebase_url": "https://fitcoprod.firebaseio.com",
+    "project_id": "fitcoprod",
+    "storage_bucket": "fitcoprod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759190042025:android:00b00a5696a9c763",
+        "android_client_info": {
+          "package_name": "com.ionicframework.fitcoapp644044"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759190042025-8oe10clpmq0q1ro67ea2h6li1si6te7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJhkIhZr8HQh_aN3qrZ_nOzp1LHOUiO2M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

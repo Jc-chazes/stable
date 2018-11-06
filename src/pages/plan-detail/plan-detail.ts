@@ -20,6 +20,7 @@ export class PlanDetailPage {
     currency: string;
   optionSession:any ="-1";
   id : any;
+  status = localStorage.getItem('statusCycleModel');
 
     constructor(
         public navCtrl: NavController,
