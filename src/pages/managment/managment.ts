@@ -161,6 +161,8 @@ export class ManagmentPage {
         localStorage.setItem('orgEstablishments', establishment.orgEstablishments);
         localStorage.setItem('QR', establishment.QRApp);
         localStorage.setItem('statusLimitMembershipTest', establishment.statusLimitMembershipTest);
+        localStorage.setItem('marketPlatform', establishment.platform);
+        localStorage.setItem('countryCode', establishment.countryCode);
         this.appCtrl.getRootNav().setRoot(TabsPage);
     }
 }

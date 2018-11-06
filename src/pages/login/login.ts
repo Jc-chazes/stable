@@ -77,8 +77,8 @@ export class LoginPage {
                                     arrE.push(i);
                                 }
                             }
-            
-                            
+
+
                             localStorage.setItem('userEstablishments', JSON.stringify(arrE));
                             this.establishmentService.establishmentsByUser = arrE;
 
@@ -109,6 +109,9 @@ export class LoginPage {
                                     localStorage.setItem('QR', success.data[0].QRApp);
                                     localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
                                     localStorage.setItem('statusNotificationMobile', success.data[0].statusNotificationMobile);
+                                    localStorage.setItem('marketPlatform', success.data[0].platform);
+                                    localStorage.setItem('countryCode', success.data[0].countryCode);
+
                                     if(success.data[0].statusNotificationMobile == 'Y'){
                                       this.notificationsService.getUnreadNotifications()
                                       .subscribe(

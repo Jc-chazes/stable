@@ -166,7 +166,7 @@ export class ShopPage {
                                         this.showOnsitePaymentSelectedAlert(plan);
                                         break;
                                 }
-                                
+
                             }
                         }
                     ],
@@ -177,7 +177,7 @@ export class ShopPage {
                             value: 'ONLINE',
                             checked: true,
                             name: 'paymentMethod'
-                        },                
+                        },
                         {
                             type: 'radio',
                             label: 'Presencial',

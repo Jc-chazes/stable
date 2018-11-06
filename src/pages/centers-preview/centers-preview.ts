@@ -57,6 +57,9 @@ export class CentersPreviewPage {
         localStorage.setItem('QR', establishment.QRApp);
         localStorage.setItem('statusLimitMembershipTest', establishment.statusLimitMembershipTest);
         localStorage.setItem('statusNotificationMobile', establishment.statusNotificationMobile);
+        localStorage.setItem('marketPlatform', establishment.platform);
+        localStorage.setItem('countryCode', establishment.countryCode);
+
         if(establishment.statusNotificationMobile == 'Y'){
           this.notificationsService.getUnreadNotifications()
           .subscribe(
