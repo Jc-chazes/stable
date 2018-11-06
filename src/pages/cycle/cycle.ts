@@ -70,7 +70,7 @@ export class CyclePage {
 
   positions(e){
     this.myPosition = e.number;
-    this.appStateService.setState({myPosition:e.number})
+    this.appStateService.setState({myPosition:e.number,positionXY:e})
   }
   ionViewDidLoad() {
     this.userService.getUser()
@@ -191,10 +191,6 @@ export class CyclePage {
   //
   //     this.navCtrl.push(FormCardDataPage);
   //   }
-
-
-0
-
 
 }
 

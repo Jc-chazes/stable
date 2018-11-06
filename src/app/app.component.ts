@@ -122,6 +122,7 @@ export class MyApp {
                         localStorage.setItem('QR', success.data[0].QRApp);
                         localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
                         localStorage.setItem('statusNotificationMobile', success.data[0].statusNotificationMobile);
+                        // localStorage.setItem('statusCycleModel',success.data[0].statusCycleModel)
                         if(success.data[0].statusNotificationMobile == 'Y'){
                           this.notificationsService.getUnreadNotifications()
                           .subscribe(

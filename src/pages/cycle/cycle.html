@@ -12,9 +12,9 @@
     <!--<div class="icon-title__position">{{myPosition}}</div>-->
   <!--</div>-->
   <page-room-layout [roomLayout]="roomLayout" *ngIf="roomLayout" mode="reserve" (positionSelect)="positions($event)" ></page-room-layout>
+    <page-form-personal-data></page-form-personal-data>
 
-
-    <div *ngIf="!usePayU">
+    <!-- <div *ngIf="false">
       <p class="text-subtitle">DATOS SOBRE TI</p>
       <form (submit)="showFormCardData()">
 
@@ -47,7 +47,7 @@
         </div>
       </form>
     </div>
-    <div *ngIf="usePayU">
+    <div *ngIf="true">
       <form (submit)="goToFormCardDataPayu()">
         <div class="dos-inputs">
           <div class="input">
@@ -92,4 +92,4 @@
       </form>
     </div>
 
-</ion-content>
+</ion-content> -->

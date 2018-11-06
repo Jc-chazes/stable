@@ -1,23 +1,48 @@
 page-shop-cycle {
   .detail-shop{
-    margin-top: 27%;
-    margin-left: 8%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+  }
+  .header{
+    display: flex;
+    height: 51px;
+    justify-content: center;
+  }
+  .detail-shop__item__title{
+    font-weight: bold
+  }
+  
+  .icon{
+    font-size: 2.8em;
+    margin-right: 2%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   .detail-shop__title{
     font-family: OpenSans-Bold;
-    font-size: 13px;
+    font-size: 27px;
     color: #818181;
-    margin-bottom: 9px;
+    margin-bottom: 17px;
   }
   .detail-shop__item{
     font-family: OpenSans-Regular;
-    font-size: 12px;
-    margin-bottom: 5px;
-    width: 240px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    width: 260px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .detail-shop__item__contain{
-    width: 127px;
+    width: 206px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

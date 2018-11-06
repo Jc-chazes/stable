@@ -56,7 +56,8 @@ export class PayUService {
         const varReferenceCode = `E${establishmentId}_SALEPLAN${plan.id}_U${userId}_R${Math.floor(Math.random() * 101)}`;
 
         this.requestData.payment.amount = plan.price;
-        this.requestData.payment.currency = plan.currency;
+        this.requestData.payment.currency = localStorage.getItem('currencyCode');
+        // plan.currency;
         this.requestData.payment.description = 'Compra por app del plan ' + plan.name;
         this.requestData.payment.referenceCode = varReferenceCode;
 

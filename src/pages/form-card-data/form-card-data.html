@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
     <ion-navbar>
         <ion-title></ion-title>
     </ion-navbar>
@@ -6,7 +6,7 @@
 </ion-header>
 <ion-content>
     <ion-grid>
-      <div class="detail-shop" *ngIf="true">
+      <div class="detail-shop" *ngIf="status === 'Y'">
         <div class="detail-shop__title">DETALLES DE COMPRA</div>
         <div class="detail-shop__item">Plan  <div class="detail-shop__item__contain">{{lessonObject.disciplineName}}</div></div>
         <div class="detail-shop__item">Precio  <div class="detail-shop__item__contain">{{currency}}  {{lessonObject.programPlanPrice}}</div></div>
@@ -43,8 +43,8 @@
                 </div>
             </div>
             <div class="div-boton">
-                <button *ngIf="plan.price" type="submit">PAGAR {{currency}} {{plan.price}}</button>
-                <button *ngIf="product.price" type="submit">PAGAR {{currency}} {{product.price}}</button>
+                <!-- <button *ngIf="plan.price" type="submit">PAGAR {{currency}} {{plan.price}}</button>
+                <button *ngIf="product.price" type="submit">PAGAR {{currency}} {{product.price}}</button> -->
                 <button *ngIf="lessonObject.programPlanPrice" type="submit">PAGAR {{currency}} {{lessonObject.programPlanPrice}}</button>
             </div>
         </form>

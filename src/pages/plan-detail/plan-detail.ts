@@ -94,6 +94,11 @@ export class PlanDetailPage {
    onChangeSession(e){
       this.id = e;
      console.log(this.id);
+     this.sessionsCiclo.map(res=>{
+       if (res.lessonsIds === e){
+         this.appStateService.setState({planCyclo : res})
+       }
+     })
      this.appStateService.setState({lessonId:e})
   }
 

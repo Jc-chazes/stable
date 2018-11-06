@@ -27,9 +27,15 @@
                     </div>
                 </ion-col>
                 <ion-col col-4>
-                    <div class="div-right">
+                        <div class="div-right" *ngIf="status === 'Y'">
+                                <button (tap)="viewPlanDetail(plan)">
+                                    <span><strong>Detalles</strong></span>
+                                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                                </button>
+                            </div>
+                    <div class="div-right" *ngIf="status != 'Y'">
                         <button (tap)="showFormPersonalData(plan)">
-                            <span><strong>Detalles</strong></span>
+                            <span><strong>Obtener</strong></span>
                             <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                         </button>
                     </div>

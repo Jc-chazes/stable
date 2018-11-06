@@ -40,7 +40,11 @@ export class EstablishmentsService {
         return this.authService.get(url)
             .map(response =>{
                 let res = response.json();
+                console.log('res',res[0].statusCycleModel)
+                localStorage.setItem('statusCycleModel',res[0].statusCycleModel)
                 return res;
+                
+                
             });
     }
     //For the select

@@ -1,19 +1,19 @@
 
-<ion-header>
-  <ion-navbar>
+<ion-header class="header">  
     <ion-title>Bicicleta Ciclo</ion-title>
-  </ion-navbar>
+    <ion-icon (tap)="close()" class="icon" ios="ios-close" md="md-close"></ion-icon>
 </ion-header>
 <ion-content>
 
 <div class="detail-shop">
-  <div class="detail-shop__title">DETALLES DE COMPRA</div>
-  <div class="detail-shop__item">Plan  <div class="detail-shop__item__contain">{{lessonObject.disciplineName}}</div></div>
-  <div class="detail-shop__item">Precio  <div class="detail-shop__item__contain">S/. {{lessonObject.programPlanPrice}}</div></div>
-  <div class="detail-shop__item">Horario  <div class="detail-shop__item__contain">{{lessonObject.start}}-{{lessonObject.end}}</div></div>
-  <div class="detail-shop__item">Posición  <div class="detail-shop__item__contain">{{myPosition}}</div></div>
-  <div class="detail-shop__item">Sesiones <div class="detail-shop__item__contain">{{lessonObject.programPlanSessions}}</div></div>
+  <div class="detail-shop__title">FELICIDADES!!!</div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Tu Codigo de reserva es el</span>  <div class="detail-shop__item__contain">#0000{{reserva}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Plan</span>  <div class="detail-shop__item__contain">{{lessonObject.disciplineName}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Precio</span>  <div class="detail-shop__item__contain">S/. {{lessonObject.programPlanPrice}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Horario</span>  <div class="detail-shop__item__contain">{{lessonObject.start}}-{{lessonObject.end}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Posición</span>  <div class="detail-shop__item__contain">{{myPosition}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Profesor</span> <div class="detail-shop__item__contain">{{lessonObject.instructorName}}</div></div>
+  <div class="detail-shop__item"><span class="detail-shop__item__title">Sesiones</span> <div class="detail-shop__item__contain">{{lessonObject.programPlanSessions}}</div></div>
 </div>
 
-<page-form-card-data></page-form-card-data>
 </ion-content>

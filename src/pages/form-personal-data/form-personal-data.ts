@@ -37,6 +37,7 @@ export class FormPersonalDataPage {
     };
     choosedCard = '';
     errors: any = {};
+    status= localStorage.getItem('statusCycleModel')
 
     constructor(
         public navCtrl: NavController,
@@ -196,7 +197,7 @@ export class FormPersonalDataPage {
             this.payuService.requestData.user.email = this.userWithPayU.email;
             this.payuService.requestData.user.celPhone = this.userWithPayU.celPhone;
             this.payuService.requestData.user.dni = this.userWithPayU.dni;
-            if(this.userFromMexico){
+            if(true){
                 this.payuService.requestData.user.birthdate = this.userWithPayU.birthdate;
             }
             this.payuService.requestData.card.paymentMethod = this.choosedCard;

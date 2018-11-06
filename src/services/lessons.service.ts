@@ -33,6 +33,7 @@ export class LessonsService {
       return response.json();
     })
   }
+ 
   getLessonsReserved(date: string) {
     let userId = this.authService.userId;
     let dateFormat = moment(date).format('YYYY-MM-DD');

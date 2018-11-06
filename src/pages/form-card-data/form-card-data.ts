@@ -11,6 +11,7 @@ import {ProductsService} from "../../services/products.service";
 import * as moment from "moment";
 import {AppStateService} from "../../services/app-state.service";
 import { NavigationService } from '../../services/navigation.service';
+import { ShopCyclePage } from '../shop-cycle/shop-cycle';
 
 @Component({
     selector: 'page-form-card-data',
@@ -33,6 +34,9 @@ export class FormCardDataPage {
     submitted: boolean = false;
   lessonObject :any;
   myPosition:number;
+  planCyclo: any;
+  status = localStorage.getItem('statusCycleModel')
+
     constructor(
         public events: Events,
         public navCtrl: NavController,
@@ -50,7 +54,8 @@ export class FormCardDataPage {
         private navigationService : NavigationService) {
         this.currency = localStorage.getItem('currencyCode');
       this.lessonObject = this.appStateService.currentState.lesson;
-      this.myPosition = this.appStateService.currentState.myPosition
+      this.myPosition = this.appStateService.currentState.myPosition;
+      this.planCyclo = this.appStateService.currentState.planCyclo
     }
 
     ionViewDidEnter(){
@@ -61,6 +66,8 @@ export class FormCardDataPage {
                 this.ga.trackView('formCardDataPage');
             })
             .catch(e => console.log('Error starting GoogleAnalytics', e));
+
+        console.log('lala',this.appStateService.currentState.planCyclo)
     }
 
   ionViewDidLeave(){
@@ -72,15 +79,16 @@ export class FormCardDataPage {
         this.product = {};
         this.submitted = false;
         this.validateEstablishment();
-        if (this.culqiService.planData) {
-           this.plan = this.culqiService.planData;
-           console.log('PLAN', this.plan);
-        }
+        // if (this.culqiService.planData) {
+        //    this.plan = this.culqiService.planData;
+        //    console.log('PLAN', this.plan);
+        // }
 
-        if (this.productsService.productToBuy) {
-            this.product = this.productsService.productToBuy;
-            console.log('PRODUCT', this.product);
-        }
+        // if (this.productsService.productToBuy) {
+        //     this.product = this.productsService.productToBuy;
+        //     console.log('PRODUCT', this.product);
+        // }
+        this.plan = this.planCyclo
     }
 
     validateEstablishment(){
@@ -145,7 +153,7 @@ export class FormCardDataPage {
             }
             else{
                 this.culqiService.cardData = this.card;
-                this.payWithCulqi();
+                // this.payWithCulqi();
             }
         }
 
@@ -190,7 +198,7 @@ export class FormCardDataPage {
         this.errors.cardLuhn = !this.validationService.validCreditCardLuhn(this.card.number);
         this.errors.expDate = !this.validationService.validExpDateCard(this.card.expDate);
         this.errors.typeCard = !this.validationService.validNumberAndTypeCard(this.card.number, this.payuService.requestData.card.paymentMethod);
-        this.errors.securityCode = !this.validationService.validCardCVV(this.card.cvv,'VISA');
+        this.errors.securityCode = !this.validationService.validCardCVV(this.card.cvv,this.payuService.requestData.card.paymentMethod);
         // this.payuService.requestData.card.paymentMethod
         for (const err in this.errors) {
             if (this.errors[err]) {
@@ -205,30 +213,10 @@ export class FormCardDataPage {
         console.log('SUB', this.submitted);
         if (!this.submitted) {
             this.submitted = true;
-
-
             this.showLoading()
-            
-            // setTimeout(() => {
-            //     this.loading.dismiss();
-            //     let alert = this.alertCtrl.create({
-            //         title: `<img src="assets/images/happy-face.png" class="icon-booking">`,
-            //         message: 'Tu Compra fue Exitosa',
-            //         buttons: [{text: 'Ok'}]
-            //     });
-            //     alert.present()
-                
-            // }, 3000);
-                
-            //      this.navigationService.navigateTo('SCHEDULE')      
-
-
-
-
-
             if(this.validateDataPayu()){
-                console.log('entro1')
-                this.showLoading();
+                
+                // this.showLoading();
                 let service;
                 
                 if (this.plan.name) {
@@ -236,10 +224,17 @@ export class FormCardDataPage {
                 } else if (this.product.title) {
                     service = this.payuService.createProductTransaction(this.product, this.card);
                 }
+                
                 service.subscribe(
                     success => {
                         if (success.title) {
+                    
+                            console.log('exito',success)
+                            let membershipId = success.insertData[0].insertData.membershipId
+                            this.saveMembershipCycle(membershipId)
                             this.showSuccess();
+                            
+                            
                         } else {
                             this.submitted = false;
                             if (success.code ===  'ERROR') {
@@ -358,7 +353,40 @@ export class FormCardDataPage {
         }
     }
 
-   
+    saveMembershipCycle(membershipId){
+        
+        let bodyData = {
+            startDate:this.lessonObject.start,
+            endDate:this.lessonObject.end,
+            lessonId:this.lessonObject.lessonId,
+            membershipId: membershipId,
+            roomId:this.lessonObject.roomId,
+            positionX:this.appStateService.currentState.positionXY.x,
+            positionY:this.appStateService.currentState.positionXY.y
+        };
+
+        this.membershipsService.buyMembershipCycle(bodyData)
+            .subscribe(
+                success =>{
+                    // this.showSuccess();
+                    console.log('leugo de comprar',success) 
+                    this.appStateService.setState({reservaId : success.data.insertedCycleModelReserveId})
+                    this.ga.startTrackerWithId('UA-76827860-8')
+                        .then(() => {
+                            console.log('Google analytics is ready now');
+                            this.ga.trackEvent('Market', 'comprar', this.authService.userLogged.establishmentName +' / '+this.authService.establishmentId+' / '+this.plan.name, this.plan.price);
+                        })
+                        .catch(e => console.log('Error starting GoogleAnalytics', e));
+                }
+                ,error =>{
+                    console.log('ERROR-BUY-MEMBERSHIP', error.json());
+                    let err = error.json();
+                    let titleError = `<img src="assets/images/sad-face.png" class="icon-booking"> <h6 class="title-booking">`+ err.title+`</h6>`;
+                    let messageError = err.msg;
+                    this.showAlert(titleError, messageError);
+                }
+            )    
+    }
     saveMembershipAndPayment(){
 
         let bodyData = {
@@ -408,7 +436,8 @@ export class FormCardDataPage {
                 handler: () => {
                     //this.events.publish('gototab');
                     /*this.navCtrl.popToRoot(ShopPage);*/
-                    this.navCtrl.popToRoot();
+                    // this.navCtrl.popToRoot();
+                    this.navCtrl.push(ShopCyclePage)
                 }
             }]
         });

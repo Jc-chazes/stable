@@ -24,6 +24,7 @@ export class ShopPage {
     thereAreProducts : boolean = true;
     currency: string;
     segment: string = 'memberships';
+    status = localStorage.getItem('statusCycleModel')
 
     constructor(
         public navCtrl: NavController,

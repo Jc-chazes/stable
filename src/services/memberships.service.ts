@@ -43,4 +43,14 @@ export class MembershipsService {
             });
     }
 
+    buyMembershipCycle(membership){
+        let url = this.appService.gateway + `/api/memberships/${membership.membershipId}/lessons/${membership.lessonId}`;
+
+        return this.authService.post(url, membership)
+            .map( response=> {
+                var res = response.json();
+                return res;
+            });
+    }
+
 }

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="status != 'Y'">
     <ion-navbar>
         <ion-title></ion-title>
     </ion-navbar>
@@ -10,7 +10,7 @@
         <div class="div-title">
             <p>Completa los datos de tu tarjeta</p>
         </div>
-        <div *ngIf="!usePayU">
+        <div *ngIf="false">
             <p class="text-subtitle">DATOS SOBRE TI</p>
             <form (submit)="showFormCardData()">
                 <div class="dos-inputs">
@@ -46,7 +46,7 @@
                 </div>
             </form>
         </div>
-        <div *ngIf="usePayU">
+        <div *ngIf="true">
             <form (submit)="goToFormCardDataPayu()">
                 <div class="dos-inputs">
                     <div class="input">
@@ -71,7 +71,7 @@
                         <input type="text" name="dni" placeholder="DNI, RUT o CURP" [(ngModel)]="userWithPayU.dni">
                     </div>
                 </div>
-                <div class="un-input" *ngIf="userFromMexico">
+                <div class="un-input" *ngIf="true">
                     <div class="div-input">
                         <input type="text" name="nacimiento" placeholder="1997-08-25 (Fecha de nacimiento)" [(ngModel)]="userWithPayU.birthdate">
                     </div>

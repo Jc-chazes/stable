@@ -11,7 +11,10 @@ export class AppStateService{
     lesson:{},
     lessonId:0,
     cycle:0,
-    myPosition:0
+    myPosition:0,
+    planCyclo:{},
+    positionXY:'',
+    reservaId: 0
 
   };
 

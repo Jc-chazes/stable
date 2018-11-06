@@ -69,6 +69,8 @@ export class SchedulePage {
   shareBD: boolean ;
   orgEstablishments;
   establishmentState :number = 1  ;
+  status = localStorage.getItem('statusCycleModel');
+  data2 = [];
 
   constructor(
     public navCtrl: NavController,
@@ -199,10 +201,28 @@ export class SchedulePage {
         data => {
           if (data.length > 0) {
             let k = this.appStateService.currentState.lessonId;
+
             let filter = data.filter(j => j.lessonId === parseInt(k));
+            let data2 = []
+            if(k){
+              let m= k.split(';')
+              console.log(m)
+              m.map(res =>{
+                data.map( l =>{
+                
+                  if(l.lessonId === parseInt(res)){
+                    console.log('igual')
+                    data2.push(l)
+                
+                  }
+                })
+
+              })
+              
+            }
             let cycle = this.appStateService.currentState.cycle;
             if (cycle){
-              this.setResponseData(filter);
+              this.setResponseData(data2);
             }else{
               this.setResponseData(data);
             }
@@ -342,6 +362,7 @@ export class SchedulePage {
 
   ionViewDidLeave(){
     this.appStateService.setState({cycle:0});
+    this.data2 = []
   }
 
   ionViewWillEnter() {
@@ -774,6 +795,7 @@ export class SchedulePage {
   getCurrencyCode() {
     this.establishmentsService.getEstablishmentById().subscribe(success => {
       localStorage.setItem('currencyCode', success[0].currency);
+      
     });
   }
 
@@ -828,7 +850,7 @@ export class SchedulePage {
       lessonId: service.lessonId,
       lessonRecordId: service.lessonRecordId,
       occupancy: service.occupancy,
-      romId: service.romId,
+      romId: service. romId,
       instructorId: service.instructorId,
       dateLesson: dateLessonSer,
       startTime: moment(service.start, 'hh:mm aa').format('HH:mm:ss'),
