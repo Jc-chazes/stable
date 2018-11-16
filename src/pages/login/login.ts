@@ -96,22 +96,7 @@ export class LoginPage {
 
                                     this.establishmentService.selectedEstablishmentId = success.data[0].establishmentId;
 
-                                    localStorage.setItem('userLogged',JSON.stringify(success.data[0]));
-                                    localStorage.setItem('establishmentSelected', success.data[0].establishmentId);
-                                    localStorage.setItem('statusPhysicalConditionsRegister', success.data[0].statusPhysicalConditionsRegister);
-                                    localStorage.setItem('statusSchedule', success.data[0].statusSchedule);
-                                    localStorage.setItem('statusWaitingList', success.data[0].statusWaitingList);
-                                    localStorage.setItem('statusUploadPhotoProgress', success.data[0].statusUploadPhotoProgress);
-                                    localStorage.setItem('statusRatingLessons', success.data[0].statusRatingLessons);
-                                    localStorage.setItem('statusShareBD', success.data[0].shareBd);
-                                    localStorage.setItem('statusOnsitePaymentMembership', success.data[0].statusOnsitePaymentMembership);
-                                    localStorage.setItem('orgEstablishments', success.data[0].orgEstablishments);
-                                    localStorage.setItem('QR', success.data[0].QRApp);
-                                    localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
-                                    localStorage.setItem('statusNotificationMobile', success.data[0].statusNotificationMobile);
-                                    localStorage.setItem('marketPlatform', success.data[0].platform);
-                                    localStorage.setItem('countryCode', success.data[0].countryCode);
-
+                                    this.establishmentService.currentEstablishment.setEstablishmentDataInLocalStorage(success.data[0]);
                                     if(success.data[0].statusNotificationMobile == 'Y'){
                                       this.notificationsService.getUnreadNotifications()
                                       .subscribe(

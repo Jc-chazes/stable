@@ -10,7 +10,7 @@ import {AuthService} from "../../services/auth.service";
 import { MembershipsService } from '../../services/memberships.service';
 import { ProductsService } from "../../services/products.service";
 import { EstablishmentsService } from '../../services/establishments.service';
-
+import { constants } from '../../helpers/constanst';
 @Component({
     selector: 'page-shop',
     templateUrl: 'shop.html'
@@ -140,7 +140,8 @@ export class ShopPage {
     }
 
     showFormPersonalData(plan){
-        this.ga.startTrackerWithId('UA-76827860-8')
+
+            this.ga.startTrackerWithId('UA-76827860-8')
             .then(() => {
                 console.log('Google analytics is ready now');
                 this.ga.trackEvent('Market', 'obtener', this.authService.userLogged.establishmentName+' / '+ this.authService.establishmentId +' / '+plan.name, plan.price);
@@ -159,8 +160,20 @@ export class ShopPage {
                             handler: (data)=>{
                                 switch (data){
                                     case 'ONLINE':
-                                        this.culqiService.planData = plan;
-                                        this.navCtrl.push(FormPersonalDataPage);
+
+                                        if(this.establishments.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.PAYU
+                                          || this.establishments.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.CULQI  ){
+                                            this.culqiService.planData = plan;
+                                            this.navCtrl.push(FormPersonalDataPage);
+                                          }else {
+                                            let alert = this.alertCtrl.create({
+                                                title: 'Lo sentimos',
+                                                message: 'Tu centro no dispone de opción de pago online',
+                                                buttons: ['Ok']
+                                            });
+                                            alert.present();
+                                          }
+
                                         break;
                                     case 'ONSITE':
                                         this.showOnsitePaymentSelectedAlert(plan);
@@ -187,9 +200,26 @@ export class ShopPage {
                     ]
                 }).present();
             }else{
-                this.culqiService.planData = plan;
-                this.navCtrl.push(FormPersonalDataPage);
+
+
+              if(this.establishments.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.PAYU
+                || this.establishments.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.CULQI  ){
+                  this.culqiService.planData = plan;
+                  this.navCtrl.push(FormPersonalDataPage);
+
+                }else{
+                  let alert = this.alertCtrl.create({
+                      title: 'Lo sentimos',
+                      message: 'Tu centro no dispone de opción de pago online',
+                      buttons: ['Ok']
+                  });
+                  alert.present();
+
+                }
+
             }
+
+
     }
 
     showNextPage(product) {
