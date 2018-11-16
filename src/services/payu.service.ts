@@ -28,7 +28,8 @@ export class PayUService {
             name: '',
             cardNumber: '',
             expirationDate: '',
-            securityCode: ''
+            securityCode: '',
+            typeCard: ''
         },
         establishmentId: null,
         ipAddress: ''
@@ -63,7 +64,7 @@ export class PayUService {
         this.requestData.card.cardNumber = card.number;
         this.requestData.card.expirationDate = card.expDate;
         this.requestData.card.securityCode = card.cvv;
-
+        this.requestData.card.typeCard = card.typeCard
         this.requestData.establishmentId = parseInt(establishmentId);
 
         const membershipData = {
@@ -103,7 +104,7 @@ export class PayUService {
         this.requestData.card.cardNumber = card.number;
         this.requestData.card.expirationDate = card.expDate;
         this.requestData.card.securityCode = card.cvv;
-
+        this.requestData.card.typeCard = card.typeCard;
         this.requestData.establishmentId = parseInt(establishmentId);
 
         const productData = {
