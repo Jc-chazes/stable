@@ -10,7 +10,7 @@ import {ValidationService} from "../../services/validation.service";
 import {ProductsService} from "../../services/products.service";
 import {constants} from "../../helpers/constanst";
 import * as moment from "moment";
-import {constants} from "../../helpers/constanst";
+
 
 @Component({
     selector: 'page-form-card-data',
