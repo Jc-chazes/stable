@@ -149,20 +149,7 @@ export class ManagmentPage {
         this.authService.statusPhysicalConditionsRegister = establishment.statusPhysicalConditionsRegister;
         this.authService.statusSchedule = establishment.statusSchedule;
 
-        localStorage.setItem('userLogged',JSON.stringify(establishment));
-        localStorage.setItem('establishmentSelected',establishment.establishmentId);
-        localStorage.setItem('statusPhysicalConditionsRegister', establishment.statusPhysicalConditionsRegister);
-        localStorage.setItem('statusSchedule', establishment.statusSchedule);
-        localStorage.setItem('statusWaitingList', establishment.statusWaitingList);
-        localStorage.setItem('statusUploadPhotoProgress', establishment.statusUploadPhotoProgress);
-        localStorage.setItem('statusRatingLessons', establishment.statusRatingLessons);
-        localStorage.setItem('statusShareBD', establishment.shareBd);
-        localStorage.setItem('statusOnsitePaymentMembership', establishment.statusOnsitePaymentMembership);
-        localStorage.setItem('orgEstablishments', establishment.orgEstablishments);
-        localStorage.setItem('QR', establishment.QRApp);
-        localStorage.setItem('statusLimitMembershipTest', establishment.statusLimitMembershipTest);
-        localStorage.setItem('marketPlatform', establishment.platform);
-        localStorage.setItem('countryCode', establishment.countryCode);
+        this.establishmentsService.currentEstablishment.setEstablishmentDataInLocalStorage(establishment);
         this.appCtrl.getRootNav().setRoot(TabsPage);
     }
 }

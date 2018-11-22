@@ -9,6 +9,7 @@ import {GoogleAnalytics} from "@ionic-native/google-analytics";
 import {PlansService} from "../../services/plans.service";
 import {AuthService} from "../../services/auth.service";
 import {ValidationService} from "../../services/validation.service";
+import {constants} from "../../helpers/constanst";
 
 @Component({
     selector: 'page-form-personal-data',
@@ -66,8 +67,7 @@ export class FormPersonalDataPage {
 
     validateEstablishment(){
 
-        let marketPlatform = localStorage.getItem('marketPlatform');
-        if( marketPlatform == '0' ){
+        if(  this.establishmentsService.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.PAYU){
             this.usePayU = true;
             this.userFromMexico = localStorage.getItem('countryCode') === 'MX'? true : false ;
             this.showPayUForm();

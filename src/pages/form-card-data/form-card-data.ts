@@ -10,6 +10,7 @@ import {ValidationService} from "../../services/validation.service";
 import {ProductsService} from "../../services/products.service";
 import {constants} from "../../helpers/constanst";
 import * as moment from "moment";
+import {constants} from "../../helpers/constanst";
 
 @Component({
     selector: 'page-form-card-data',
@@ -79,11 +80,10 @@ export class FormCardDataPage {
 
     validateEstablishment(){
 
-        let marketPlatform = localStorage.getItem('marketPlatform');
-        if(marketPlatform == '0') {
+        if(this.establishmentService.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.PAYU) {
             this.usePayU = true;
         }
-        else if(marketPlatform == '1'){
+        else if(this.establishmentService.currentEstablishment.marketPlatform.code == constants.MARKET_PLATFORMS.CULQI){
             this.usePayU = false;
             this.establishmentService.getEstablishmentById()
                 .subscribe(

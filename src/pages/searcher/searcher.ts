@@ -136,19 +136,8 @@ export class SearcherPage {
 
                                                         this.establishmentService.establishmentsByUser = success.data;
                                                         this.establishmentService.selectedEstablishmentId = success.data[0].establishmentId;
+                                                        this.establishmentService.currentEstablishment.setEstablishmentDataInLocalStorage(success.data[0]);
 
-                                                        localStorage.setItem('userLogged',JSON.stringify(success.data[0]));
-                                                        localStorage.setItem('establishmentSelected', success.data[0].establishmentId);
-                                                        localStorage.setItem('statusWaitingList', success.data[0].statusWaitingList);
-                                                        localStorage.setItem('statusPhysicalConditionsRegister', success.data[0].statusPhysicalConditionsRegister);
-                                                        localStorage.setItem('statusSchedule', success.data[0].statusSchedule);
-                                                        localStorage.setItem('statusUploadPhotoProgress', success.data[0].statusUploadPhotoProgress);
-                                                        localStorage.setItem('statusRatingLessons', success.data[0].statusRatingLessons);
-                                                        localStorage.setItem('QR', success.data[0].QRApp);
-                                                        localStorage.setItem('statusLimitMembershipTest', success.data[0].statusLimitMembershipTest);
-                                                        localStorage.setItem('statusNotificationMobile', establishment.statusNotificationMobile);
-                                                        localStorage.setItem('marketPlatform', establishment.platform);
-                                                        localStorage.setItem('countryCode', establishment.countryCode);
                                                         if(establishment.statusNotificationMobile == 'Y'){
                                                           this.notificationsService.getUnreadNotifications()
                                                           .subscribe(
