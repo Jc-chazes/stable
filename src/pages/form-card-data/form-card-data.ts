@@ -8,8 +8,9 @@ import {GoogleAnalytics} from "@ionic-native/google-analytics";
 import {AuthService} from "../../services/auth.service";
 import {ValidationService} from "../../services/validation.service";
 import {ProductsService} from "../../services/products.service";
-import * as moment from "moment";
 import {constants} from "../../helpers/constanst";
+import * as moment from "moment";
+
 
 @Component({
     selector: 'page-form-card-data',
@@ -28,6 +29,7 @@ export class FormCardDataPage {
         number : "",
         expDate : "",
         cvv : "",
+        typeCard: ""
     };
     submitted: boolean = false;
 
@@ -43,7 +45,8 @@ export class FormCardDataPage {
         public ga: GoogleAnalytics,
         private validationService: ValidationService,
         private authService: AuthService,
-        private productsService: ProductsService) {
+        private productsService: ProductsService,
+        ) {
         this.currency = localStorage.getItem('currencyCode');
     }
 
@@ -58,10 +61,11 @@ export class FormCardDataPage {
     }
 
     ionViewWillEnter(){
-        console.log('WILL-ENTER');
+
         this.plan = {};
         this.product = {};
         this.submitted = false;
+
         this.validateEstablishment();
         if (this.culqiService.planData) {
            this.plan = this.culqiService.planData;
@@ -92,7 +96,7 @@ export class FormCardDataPage {
     }
 
     startPayment(){
-        if(this.card.number == "" || this.card.expDate == "" || this.card.cvv == ""){
+        if(this.card.number == "" || this.card.expDate == "" || this.card.cvv == "" || this.card.typeCard == ""){
             const alert = this.alertCtrl.create({
                 title: 'Ups...',
                 message: 'Por favor completa todos los campos',
