@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppService {
-gateway = "https://nodejs.fitcoapp.net";
+// gateway = "https://nodejs.fitcoapp.net";
+gateway = "https://demo.fitcoapp.net";
   // gateway = "http://52.90.34.88:9000" // develop;
   // gateway = "http://34.227.151.145:9000" // Jessika;
  //gateway = "http://localhost:9000"

@@ -54,6 +54,7 @@ export class MembershipsPage {
                 totalFreeze : item.totalFreeze,
                 planPrice: item.plansPrice,
                 debt: item.unpaid,
+                giftSessions:item.giftSessions
             };
 
             this.memberships.push(memb);

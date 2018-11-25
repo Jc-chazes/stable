@@ -20,8 +20,8 @@
                         <p><span>DESDE: </span>{{membership.startDate}}</p>
                         <p><span>HASTA: </span>{{membership.endDate}}</p>
                         <p><span>COSTO: </span>{{currency}} {{membership.planPrice}}</p>
-                        <p><span>SESIONES: </span>{{membership.useSessions}} / {{membership.totalSessions}}</p>
-                        <!-- <p><span>SESIONES: </span>{{membership.useSessions}} / {{membership.totalSessions + membership.giftSessions}} <span *ngIf="membership.giftSessions > 0" >( {{membership.giftSessions}} sesiones de regalo )</span></p> -->
+                        <!-- <p><span>SESIONES: </span>{{membership.useSessions}} / {{membership.totalSessions}}</p> -->
+                        <p><span>SESIONES: </span>{{membership.useSessions}} / {{membership.totalSessions + membership.giftSessions}} <span *ngIf="membership.giftSessions > 0" >( {{membership.giftSessions}} sesiones de regalo )</span></p>
                     </div>
                 </div>
             </ion-col>
