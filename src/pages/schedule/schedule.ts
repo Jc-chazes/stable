@@ -249,10 +249,11 @@ export class SchedulePage {
 
         let currentHour = moment().format();
         let lessonHour = moment(item.start, 'hh:mm a').format();
-
-        if (lessonHour >= currentHour) {
+        if (lessonHour >= currentHour && item.reserves < item.occupancy) {
           temp.push(item);
         }
+
+
       }
     } else if (moment(this.week[3].date).format() >= moment().format()) {
       temp = [];
@@ -260,7 +261,10 @@ export class SchedulePage {
         item.date = moment(item.start).format('DD/MM/YYYY');
         item.start = moment(item.start).format('hh:mm a');
         item.end = moment(item.end).format('hh:mm a');
-        temp.push(item);
+        if (item.reserves < item.occupancy) {
+          temp.push(item);
+        }
+
       }
     }
 
