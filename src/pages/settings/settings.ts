@@ -9,8 +9,9 @@ import {GoogleAnalytics} from '@ionic-native/google-analytics';
     selector: 'page-settings',
     templateUrl: 'settings.html'
 })
-export class SettingsPage {
 
+export class SettingsPage {
+    version = 0.3;    
     constructor(
         public app : App,
         public navCtrl: NavController,
