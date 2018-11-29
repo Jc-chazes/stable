@@ -236,8 +236,16 @@ export class SchedulePage {
     }
   }
 
+  get hideFullLessons(){
+    return this.establishmentsService.currentEstablishment.statusHideFullLessons;
+  }
+
   setResponseData(data) {
     let temp = [];
+
+    if( this.hideFullLessons ){
+      data = data.filter( lesson => lesson.reserves < lesson.occupancy );
+    }
 
     //Validación para mostrar las clases a partir de esta hora en adelante
     if (moment(this.week[3].date).format('DD/MM/YYYY') == moment().format('DD/MM/YYYY')) {
@@ -249,7 +257,7 @@ export class SchedulePage {
 
         let currentHour = moment().format();
         let lessonHour = moment(item.start, 'hh:mm a').format();
-        if (lessonHour >= currentHour && item.reserves < item.occupancy) {
+        if (lessonHour >= currentHour && /*item.reserves < item.occupancy*/true) {
           temp.push(item);
         }
 
@@ -261,7 +269,7 @@ export class SchedulePage {
         item.date = moment(item.start).format('DD/MM/YYYY');
         item.start = moment(item.start).format('hh:mm a');
         item.end = moment(item.end).format('hh:mm a');
-        if (item.reserves < item.occupancy) {
+        if (/*item.reserves < item.occupancy*/true) {
           temp.push(item);
         }
 
@@ -498,7 +506,7 @@ export class SchedulePage {
               '¡Éxito! entraste en la lista de espera' +
               `</h6>`,
             subTitle: `${
-              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos} persona(s) antes que tu`
+              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos-1} persona(s) antes que tu`
             }, te notificaremos en caso de liberarse un espacio para ti`,
             buttons: ['OK']
           });

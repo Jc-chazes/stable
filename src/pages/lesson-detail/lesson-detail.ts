@@ -55,7 +55,7 @@ export class LessonDetailPage {
   }
 
   showSimpleRerserveAlert(lesson, waintingList?) {
-    let messageAlert = lesson.dsciplineName + ' a las ' + lesson.start + ' el ' + lesson.date;
+    let messageAlert = lesson.disciplineName + ' a las ' + lesson.start + ' el ' + lesson.date;
     let alert;
     if (waintingList) {
       alert = this.alertCtrl.create({
@@ -225,7 +225,7 @@ export class LessonDetailPage {
               '¡Éxito, Entraste en la lista de espera!' +
               `</h6>`,
             subTitle: `${
-              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos} persona(s) antes que tu`
+              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos-1} persona(s) antes que tu`
             }, te notificaremos en caso de liberarse un espacio para ti`,
             buttons: [
               {
