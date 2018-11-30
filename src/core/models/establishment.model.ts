@@ -6,6 +6,10 @@ export class Establishment{
         return localStorage.getItem('statusOnsitePaymentMembership') == 'Y';
     }
 
+    get statusHideFullLessons(): boolean{
+        return localStorage.getItem('statusHideFullLessons') == 'Y';
+    }
+
     get marketPlatform(): EstablishmentMarketPlatform{
       let marketPlatform = localStorage.getItem('marketPlatform');
       if( !marketPlatform ){
@@ -24,6 +28,7 @@ export class Establishment{
       localStorage.setItem('statusRatingLessons', establishmentData.statusRatingLessons);
       localStorage.setItem('statusShareBD', establishmentData.shareBd);
       localStorage.setItem('statusOnsitePaymentMembership', establishmentData.statusOnsitePaymentMembership);
+      localStorage.setItem('statusHideFullLessons', establishmentData.statusHideFullLessons);
       localStorage.setItem('orgEstablishments', establishmentData.orgEstablishments);
       localStorage.setItem('QR', establishmentData.QRApp);
       localStorage.setItem('statusLimitMembershipTest', establishmentData.statusLimitMembershipTest);

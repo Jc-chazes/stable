@@ -55,7 +55,7 @@ export class LessonDetailPage {
   }
 
   showSimpleRerserveAlert(lesson, waintingList?) {
-    let messageAlert = lesson.dsciplineName + ' a las ' + lesson.start + ' el ' + lesson.date;
+    let messageAlert = lesson.disciplineName + ' a las ' + lesson.start + ' el ' + lesson.date;
     let alert;
     if (waintingList) {
       alert = this.alertCtrl.create({
@@ -213,7 +213,7 @@ export class LessonDetailPage {
 
         if (err.title == 'WAINTING.LIST.ADDED') {
           let pos = 1;
-          const waitingList = err.listWaitingList;
+          const waitingList = err.data ? err.data.listWaitingList : [];
           for (const posw in waitingList) {
             if (this.authService.userId == waitingList[posw].userEstablishmentId) {
               pos = parseInt(posw) + 1;
@@ -225,7 +225,7 @@ export class LessonDetailPage {
               '¡Éxito, Entraste en la lista de espera!' +
               `</h6>`,
             subTitle: `${
-              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos} persona(s) antes que tu`
+              pos == 1 ? 'Eres el primero de la lista de espera' : `Hay ${pos-1} persona(s) antes que tú`
             }, te notificaremos en caso de liberarse un espacio para ti`,
             buttons: [
               {
