@@ -87,6 +87,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { DevicesService } from '../services/devices.service';
 import { NavigationService } from '../services/navigation.service';
+import { CommunicationsPage } from '../pages/communications/communications';
+import {CommunicationsService} from "../services/communications.service";
 
 @NgModule({
     declarations: [
@@ -108,6 +110,7 @@ import { NavigationService } from '../services/navigation.service';
         MembershipAttendancesPage,
         MembershipFreezesPage,
         ReserveDetailPage,
+       CommunicationsPage,
         LessonDetailPage,
         PlanDetailPage,
         ProductDetailPage,
@@ -124,7 +127,8 @@ import { NavigationService } from '../services/navigation.service';
         SignupPage,
         HomePage,
         QrCodePage,
-        TabsPage
+        TabsPage,
+
     ],
     imports: [
         BrowserModule,
@@ -169,7 +173,8 @@ import { NavigationService } from '../services/navigation.service';
         SignupPage,
         HomePage,
         QrCodePage,
-        TabsPage
+        TabsPage,
+        CommunicationsPage
     ],
     providers: [
         StatusBar,
@@ -201,6 +206,7 @@ import { NavigationService } from '../services/navigation.service';
         MeasurementsService,
         BarcodeScanner,
         ValidationService,
+        CommunicationsService,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         AppStateService,
         DevicesService,

@@ -15,6 +15,7 @@ import { DevicesService } from '../../services/devices.service';
 import { NavigationService } from '../../services/navigation.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Platform } from 'ionic-angular/platform/platform';
+import { CommunicationsPage } from '../communications/communications';
 
 @Component({
     templateUrl: 'tabs.html'
@@ -26,6 +27,8 @@ export class TabsPage {
     tab3Root = HomePage;
     tab4Root = NotificationsPage;
     tab5Root = ManagmentPage;
+    tab6Root = CommunicationsPage;
+
     // pusher: any;
     cont = 0;
     urlNotification = "";
@@ -37,6 +40,11 @@ export class TabsPage {
     get allowNotifications(): boolean{
       return localStorage.getItem('statusNotificationMobile') == 'Y' ? true : false;
     }
+    get newsMobile(): boolean{
+        // return localStorage.getItem('statusNewsMobile') == 'Y' ? true : false;
+        return true
+    }
+
     @ViewChild("tabs") tabs: Tabs;
 
     constructor(private localNotifications: LocalNotifications,

@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Noticias</ion-title>
+    </ion-navbar>
+    <!-- <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="news">
+                Noticias
+            </ion-segment-button>
+            <ion-segment-button value="notifications">
+                Notificaciones
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar> -->
+</ion-header>
+<ion-content [ngSwitch]="segment">
+    <div *ngSwitchCase="'news'">
+        <ion-slides pager>
+            <ion-slide *ngFor="let item of new">
+                <a href={{item.link}}><img [src]="item.urlFile"  class="slide-image"/></a>
+
+                <div style ="color:black;font-size:15px" class='title-slide'>{{item.title}}</div>
+                <div style ="color:gray;font-size:12px" class='title-slide'>{{item.description}}</div>
+            </ion-slide>
+        </ion-slides>
+        
+    </div>
+    <!-- <div *ngSwitchCase="'notifications'">
+        <ion-grid *ngIf="thereAreNotifications">
+            <ion-row class="each-row" *ngFor="let notify of listNotifications; let ind = index">
+                <ion-col col-2>
+                    <div class="circle">
+                        <p>{{notify.title.slice(0,1)}}</p>
+                    </div>
+                </ion-col>
+                <ion-col col-10 [ngClass]="{'new-message': notify.read_user == null}">
+                    <div class="div-text">
+                        <p class="p-title">{{notify.title}}</p>
+                        <p [ngClass]="{
+            'p-text': true,
+            'fontsize-10': notify.text.length > 300}">{{notify.text}}</p>
+                    </div>
+                    <div class="date">
+                        <p>{{notify.timeAgo}}</p>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="!thereAreNotifications">
+            <ion-row class="box-message">
+                <div>
+                    <p>Todavía no tienes notificaciones</p>
+                </div>
+            </ion-row>
+        </ion-grid>
+        <ion-infinite-scroll (ionInfinite)="getNotifications($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div> -->
+</ion-content>
