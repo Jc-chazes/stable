@@ -41,8 +41,8 @@ export class TabsPage {
       return localStorage.getItem('statusNotificationMobile') == 'Y' ? true : false;
     }
     get newsMobile(): boolean{
-        // return localStorage.getItem('statusNewsMobile') == 'Y' ? true : false;
-        return true
+        return localStorage.getItem('statusNewsMobile') == 'Y' ? true : false;
+        
     }
 
     @ViewChild("tabs") tabs: Tabs;
