@@ -35,7 +35,6 @@ export class Establishment{
       localStorage.setItem('statusNotificationMobile', establishmentData.statusNotificationMobile);
       localStorage.setItem('marketPlatform', establishmentData.platform);
       localStorage.setItem('countryCode', establishmentData.countryCode);
-
-
+      localStorage.setItem('statusNewsMobile',establishmentData.statusNewsMobile)
     }
 }
