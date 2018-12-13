@@ -177,6 +177,12 @@ export class LessonDetailPage {
           case 'RESERVES.ERROR_CLOSED':
             message = 'La clase se encuentra dictada';
             break;
+          case 'RESERVES.ERROR_CLOSED_LESSON' :
+            message = 'La clase se encuentra cerrada';
+          break;
+          case 'RESERVES.ERROR_DICTATED_CLASS' :
+            message = 'La clase se encuentra dictada';
+          break;
           case 'RESERVES.ERROR_OCCUPANCY':
             message = 'Uy... ya no quedan cupos disponibles. Prueba con otra clase por favor';
             break;
