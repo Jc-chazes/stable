@@ -454,10 +454,10 @@ export class SchedulePage {
           case 'RESERVES.ERROR_CLOSED':
             message = 'La clase se encuentra dictada';
             break;
-          case 'RESERVES.ERROR_CLOSED_LESSON' :
+          case 'RESERVES.ERROR_CANCEL_LESSON' :
             message = 'La clase se encuentra cancelada';
           break;
-          case 'RESERVES.ERROR_DICTATED_CLASS' :
+          case 'RESERVES.ERROR_DICTATED_LESSON' :
             message = 'La clase se encuentra dictada';
           break; 
           case 'RESERVES.ERROR_OCCUPANCY':
